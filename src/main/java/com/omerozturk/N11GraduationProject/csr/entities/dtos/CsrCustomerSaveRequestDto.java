@@ -6,7 +6,6 @@ import java.util.Date;
 
 @Data
 public class CsrCustomerSaveRequestDto {
-    private Long id;
     private String identityNumber;
     private String firstName;
     private String lastName;

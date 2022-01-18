@@ -49,6 +49,10 @@ public class CsrCustomerManager implements CsrCustomerService {
     @Override
     public DataResult<CsrCustomerDto> save(CsrCustomerSaveRequestDto csrCustomerSaveRequestDto) {
         CsrCustomer csrCustomer = CsrCustomerMapper.INSTANCE.convertCsrCustomerSaveRequestDtoToCsrCustomer(csrCustomerSaveRequestDto);
+        CsrCustomerDto controller= csrCustomerControl(csrCustomer);
+        if(controller!=null){
+            return new SuccessDataResult<CsrCustomerDto>(controller,"Kullanıcı Zaten Kayıtlı");
+        }
         csrCustomer = csrCustomerEntityService.save(csrCustomer);
         CsrCustomerDto csrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
         return new SuccessDataResult<CsrCustomerDto>(csrCustomerDto,"Kullanıcı Eklendi");
@@ -67,5 +71,16 @@ public class CsrCustomerManager implements CsrCustomerService {
             throw new CsrCustomerNotFoundException("Kullanıcı Bulunanamdı!");
         }
         return csrCustomer;
+    }
+    private CsrCustomerDto csrCustomerControl(CsrCustomer csrCustomer){
+        CsrCustomer responseCsrCustomer= csrCustomerEntityService.findByIdentityNumber(csrCustomer.getIdentityNumber());
+        if(responseCsrCustomer!=null){
+            CsrCustomerDto csrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(responseCsrCustomer);
+            return csrCustomerDto;
+        }
+        if (false){
+            //todo:mernis doğrulama yazılacak
+        }
+        return null;
     }
 }
