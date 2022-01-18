@@ -21,7 +21,6 @@ public class CsrCustomerGuarantee implements BaseEntity {
     private String explanation;
     private GuaranteeType guaranteeType;
     private BigDecimal guaranteeAmount;
-    private Date dateOfBirth;
     private Date operationDate;
     private Long customerId;
 }

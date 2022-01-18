@@ -1,8 +1,7 @@
 package com.omerozturk.N11GraduationProject.gen.utilities.service;
 
-import com.bahadirmemis.n11.n11bootcamp.gen.entity.BaseEntity;
+import com.omerozturk.N11GraduationProject.gen.utilities.entity.BaseEntity;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,6 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-//@NoArgsConstructor
 public abstract class BaseEntityService<E extends BaseEntity,D extends JpaRepository> {
 
     private D dao;
@@ -20,8 +18,13 @@ public abstract class BaseEntityService<E extends BaseEntity,D extends JpaReposi
         return dao.findAll();
     }
 
-    public Optional<E> findById(Long id){
-        return dao.findById(id);
+    public E findById(Long id){
+        Optional<E> optionalEntity=dao.findById(id);
+        E entity=null;
+        if (optionalEntity.isPresent()){
+            entity = optionalEntity.get();
+        }
+        return entity;
     }
 
     public E save(E e){

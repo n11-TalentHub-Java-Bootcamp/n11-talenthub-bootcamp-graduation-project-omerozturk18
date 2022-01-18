@@ -1,13 +1,11 @@
 package com.omerozturk.N11GraduationProject.csr.entities.dtos;
 
-
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class CsrCustomerDto {
-
+public class CsrCustomerSaveRequestDto {
     private Long id;
     private String identityNumber;
     private String firstName;
@@ -15,5 +13,4 @@ public class CsrCustomerDto {
     private Date dateOfBirth;
     private String phoneNumber;
     private Date operationDate;
-
 }
