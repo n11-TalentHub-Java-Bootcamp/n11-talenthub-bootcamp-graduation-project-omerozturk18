@@ -1,23 +1,23 @@
-package com.omerozturk.N11GraduationProject.csr.api.controller;
+package com.omerozturk.N11GraduationProject.crd.api.controller;
 
 
-import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerGuaranteeSaveRequestDto;
-import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrCustomerGuaranteeService;
+import com.omerozturk.N11GraduationProject.crd.entities.dtos.CrdCreditSaveRequestDto;
+import com.omerozturk.N11GraduationProject.crd.services.abstracts.CrdCreditService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/customer-guarantees")
+@RequestMapping("/api/v1/customer-credits")
 @CrossOrigin
 @RequiredArgsConstructor
-public class CsrCustomerGuaranteeController {
+public class CrdCreditController {
 
-    private final CsrCustomerGuaranteeService csrCustomerGuaranteeService;
+    private final CrdCreditService crdCreditCreditService;
 
     @GetMapping
     public ResponseEntity getAll(){
-        var result = csrCustomerGuaranteeService.findAll();
+        var result = crdCreditCreditService.findAll();
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
@@ -26,25 +26,26 @@ public class CsrCustomerGuaranteeController {
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable Long id){
-        var result =  csrCustomerGuaranteeService.findById(id);
+        var result =  crdCreditCreditService.findById(id);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
         return ResponseEntity.badRequest().body(result);
     }
 
-    @GetMapping("/customer/{customerId}")
-    public ResponseEntity getByCustomerId(@PathVariable Long customerId){
-        var result =  csrCustomerGuaranteeService.findByCustomerId(customerId);
+    @GetMapping("/name/{creditName}")
+    public ResponseEntity getByName(@PathVariable String creditName){
+        var result =  crdCreditCreditService.findByName(creditName);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
         return ResponseEntity.badRequest().body(result);
     }
 
+    
     @PostMapping
-    public ResponseEntity create(@RequestBody CsrCustomerGuaranteeSaveRequestDto csrCustomerGuaranteeSaveRequestDto){
-        var result = csrCustomerGuaranteeService.save(csrCustomerGuaranteeSaveRequestDto);
+    public ResponseEntity create(@RequestBody CrdCreditSaveRequestDto crdCreditCreditSaveRequestDto){
+        var result = crdCreditCreditService.save(crdCreditCreditSaveRequestDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
@@ -53,7 +54,7 @@ public class CsrCustomerGuaranteeController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id){
-        var result = csrCustomerGuaranteeService.delete(id);
+        var result = crdCreditCreditService.delete(id);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
