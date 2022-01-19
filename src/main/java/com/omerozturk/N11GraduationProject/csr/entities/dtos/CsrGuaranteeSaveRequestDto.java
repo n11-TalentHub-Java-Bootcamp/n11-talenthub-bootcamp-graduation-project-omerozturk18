@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class CsrCustomerGuaranteeSaveRequestDto {
+public class CsrGuaranteeSaveRequestDto {
     private String explanation;
     private GuaranteeType guaranteeType;
     private BigDecimal guaranteeAmount;

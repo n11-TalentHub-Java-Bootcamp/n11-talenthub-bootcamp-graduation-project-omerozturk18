@@ -10,7 +10,7 @@ import java.util.List;
 public interface CrdCreditService {
     DataResult<List<CrdCreditDto>> findAll();
     DataResult<CrdCreditDto> findById(Long id);
-    DataResult<CrdCreditDto> findByName(String creditName);
+    DataResult<CrdCreditDto> findByCreditName(String creditName);
     DataResult<CrdCreditDto> save(CrdCreditSaveRequestDto crdCreditSaveRequestDto);
     Result delete(Long id);
 }

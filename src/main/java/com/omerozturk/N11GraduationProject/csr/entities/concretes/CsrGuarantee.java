@@ -10,13 +10,13 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "CSR_CUSTOMER_GUARANTEE")
+@Table(name = "CSR_GUARANTEE")
 @Data
-public class CsrCustomerGuarantee implements BaseEntity {
+public class CsrGuarantee implements BaseEntity {
 
     @Id
     @GeneratedValue(generator = "generator")
-    @SequenceGenerator(name = "generator", sequenceName = "CSR_CUSTOMER_GUARANTEE_ID_SEQ")
+    @SequenceGenerator(name = "generator", sequenceName = "CSR_GUARANTEE_ID_SEQ")
     private Long id;
     private String explanation;
     private GuaranteeType guaranteeType;

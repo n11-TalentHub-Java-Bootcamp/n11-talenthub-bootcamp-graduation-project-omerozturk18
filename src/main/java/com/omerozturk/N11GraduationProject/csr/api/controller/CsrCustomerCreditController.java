@@ -1,6 +1,7 @@
 package com.omerozturk.N11GraduationProject.csr.api.controller;
 
 
+
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditSaveRequestDto;
 import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrCustomerCreditService;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/customer-credits")
+@RequestMapping("/api/v1/credits")
 @CrossOrigin
 @RequiredArgsConstructor
 public class CsrCustomerCreditController {

@@ -13,10 +13,10 @@ public class CsrCustomerCreditEntityService extends BaseEntityService<CsrCustome
         super(dao);
     }
     public List<CsrCustomerCredit> findByCustomerId(Long customerId){
-        return getDao().findByCustomerId(customerId);
+        return getDao().findByCsrCustomerId(customerId);
     }
     public List<CsrCustomerCredit> findByCreditId(Long creditId){
-        return getDao().findByCreditId(creditId);
+        return getDao().findByCrdCreditId(creditId);
     }
 
 }

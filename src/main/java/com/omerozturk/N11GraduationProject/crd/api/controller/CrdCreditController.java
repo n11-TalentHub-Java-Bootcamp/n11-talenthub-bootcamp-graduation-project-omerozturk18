@@ -34,8 +34,8 @@ public class CrdCreditController {
     }
 
     @GetMapping("/name/{creditName}")
-    public ResponseEntity getByName(@PathVariable String creditName){
-        var result =  crdCreditCreditService.findByName(creditName);
+    public ResponseEntity getByCreditName(@PathVariable String creditName){
+        var result =  crdCreditCreditService.findByCreditName(creditName);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }

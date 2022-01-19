@@ -9,7 +9,7 @@ import java.util.Date;
 
 
 @Data
-public class CsrCustomerGuaranteeDto {
+public class CsrGuaranteeDto {
     private Long id;
     private String explanation;
     private GuaranteeType guaranteeType;

@@ -40,8 +40,8 @@ public class CrdCreditManager implements CrdCreditService {
     }
 
    @Override
-    public DataResult<CrdCreditDto> findByName(String creditName){
-       CrdCredit crdCredit = crdCreditEntityService.findByName(creditName);
+    public DataResult<CrdCreditDto> findByCreditName(String creditName){
+       CrdCredit crdCredit = crdCreditEntityService.findByCreditName(creditName);
         if (crdCredit == null){
             throw new CrdCreditNotFoundException("Kredi Bulunanamdı!");
         }

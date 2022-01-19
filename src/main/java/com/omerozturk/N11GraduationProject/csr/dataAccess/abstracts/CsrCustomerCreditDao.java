@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface CsrCustomerCreditDao extends JpaRepository<CsrCustomerCredit, Long> {
 
-    List<CsrCustomerCredit> findByCustomerId(Long customerId);
-    List<CsrCustomerCredit> findByCreditId(Long creditId);
+    List<CsrCustomerCredit> findByCsrCustomerId(Long customerId);
+    List<CsrCustomerCredit> findByCrdCreditId(Long creditId);
 }

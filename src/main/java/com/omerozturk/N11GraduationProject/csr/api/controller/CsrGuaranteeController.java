@@ -1,23 +1,23 @@
 package com.omerozturk.N11GraduationProject.csr.api.controller;
 
 
-import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerGuaranteeSaveRequestDto;
-import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrCustomerGuaranteeService;
+import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrGuaranteeSaveRequestDto;
+import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrGuaranteeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/customer-guarantees")
+@RequestMapping("/api/v1/guarantees")
 @CrossOrigin
 @RequiredArgsConstructor
-public class CsrCustomerGuaranteeController {
+public class CsrGuaranteeController {
 
-    private final CsrCustomerGuaranteeService csrCustomerGuaranteeService;
+    private final CsrGuaranteeService csrGuaranteeService;
 
     @GetMapping
     public ResponseEntity getAll(){
-        var result = csrCustomerGuaranteeService.findAll();
+        var result = csrGuaranteeService.findAll();
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
@@ -26,7 +26,7 @@ public class CsrCustomerGuaranteeController {
 
     @GetMapping("/{id}")
     public ResponseEntity getById(@PathVariable Long id){
-        var result =  csrCustomerGuaranteeService.findById(id);
+        var result =  csrGuaranteeService.findById(id);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
@@ -35,7 +35,7 @@ public class CsrCustomerGuaranteeController {
 
     @GetMapping("/customer/{customerId}")
     public ResponseEntity getByCustomerId(@PathVariable Long customerId){
-        var result =  csrCustomerGuaranteeService.findByCustomerId(customerId);
+        var result =  csrGuaranteeService.findByCustomerId(customerId);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
@@ -43,8 +43,8 @@ public class CsrCustomerGuaranteeController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody CsrCustomerGuaranteeSaveRequestDto csrCustomerGuaranteeSaveRequestDto){
-        var result = csrCustomerGuaranteeService.save(csrCustomerGuaranteeSaveRequestDto);
+    public ResponseEntity create(@RequestBody CsrGuaranteeSaveRequestDto csrGuaranteeSaveRequestDto){
+        var result = csrGuaranteeService.save(csrGuaranteeSaveRequestDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }
@@ -53,7 +53,7 @@ public class CsrCustomerGuaranteeController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id){
-        var result = csrCustomerGuaranteeService.delete(id);
+        var result = csrGuaranteeService.delete(id);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }

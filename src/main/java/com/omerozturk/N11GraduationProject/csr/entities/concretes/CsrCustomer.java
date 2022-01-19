@@ -1,10 +1,10 @@
 package com.omerozturk.N11GraduationProject.csr.entities.concretes;
 
-
 import com.omerozturk.N11GraduationProject.gen.utilities.entity.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;
+
 import java.util.Date;
 
 @Entity

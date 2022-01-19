@@ -11,7 +11,7 @@ public class CrdCreditEntityService extends BaseEntityService<CrdCredit, CrdCred
     public CrdCreditEntityService(CrdCreditDao dao) {
         super(dao);
     }
-    public CrdCredit findByName(String creditName){
+    public CrdCredit findByCreditName(String creditName){
         return getDao().findByName(creditName);
     }
 
