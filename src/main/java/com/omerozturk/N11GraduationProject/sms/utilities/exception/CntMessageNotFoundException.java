@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class CntSmsNotFoundException extends RuntimeException {
+public class CntMessageNotFoundException extends RuntimeException {
 
-    public CntSmsNotFoundException(String message) {
+    public CntMessageNotFoundException(String message) {
         super(message);
     }
 }

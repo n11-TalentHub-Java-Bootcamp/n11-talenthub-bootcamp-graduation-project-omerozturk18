@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class CntSmsSaveRequestDto implements BaseEntity {
+public class CntMessageSaveRequestDto implements BaseEntity {
 
     private Long id;
     private String title;

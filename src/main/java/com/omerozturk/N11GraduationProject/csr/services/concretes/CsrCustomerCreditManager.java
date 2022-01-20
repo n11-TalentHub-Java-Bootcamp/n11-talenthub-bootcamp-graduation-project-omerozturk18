@@ -37,7 +37,6 @@ public class CsrCustomerCreditManager implements CsrCustomerCreditService {
     }
      @Override
     public DataResult<List<CsrCustomerCreditDto>> findByCustomerId(Long customerId) {
-        //todo:csrcustomer service eklenecek
         List<CsrCustomerCredit> csrCustomerCreditList = csrCustomerCreditEntityService.findByCustomerId(customerId);
         if (csrCustomerCreditList.isEmpty()){
             throw new CsrCustomerCreditNotFoundException("Kullanıcıya Ait Kredi Bulunanamdı!");
@@ -47,18 +46,18 @@ public class CsrCustomerCreditManager implements CsrCustomerCreditService {
     }
      @Override
     public DataResult<List<CsrCustomerCreditDto>> findByCreditId(Long creditId) {
-       //todo:crdcredit service eklenecek
         List<CsrCustomerCredit> csrCustomerCreditList = csrCustomerCreditEntityService.findByCreditId(creditId);
         if (csrCustomerCreditList.isEmpty()){
             throw new CsrCustomerCreditNotFoundException("Kredi Bulunanamdı!");
         }
         List<CsrCustomerCreditDto> crdCreditDtoList = CsrCustomerCreditMapper.INSTANCE.convertCsrCustomerCreditListToCsrCustomerCreditDtoList(csrCustomerCreditList);
-        return new SuccessDataResult<List<CsrCustomerCreditDto>>(crdCreditDtoList,"Kredileri Getirildi");
+        return new SuccessDataResult<List<CsrCustomerCreditDto>>(crdCreditDtoList,"Kredi Türüe Göre Kredileri Getirildi");
     }
 
     @Override
     public DataResult<CsrCustomerCreditDto> save(CsrCustomerCreditSaveRequestDto csrCustomerCreditSaveRequestDto) {
         CsrCustomerCredit csrCustomerCredit = CsrCustomerCreditMapper.INSTANCE.convertCsrCustomerCreditSaveRequestDtoToCsrCustomerCredit(csrCustomerCreditSaveRequestDto);
+        customerCreditControl(csrCustomerCredit);
         csrCustomerCredit = csrCustomerCreditEntityService.save(csrCustomerCredit);
         CsrCustomerCreditDto csrCustomerCreditDto = CsrCustomerCreditMapper.INSTANCE.convertCsrCustomerCreditToCsrCustomerCreditDto(csrCustomerCredit);
         return new SuccessDataResult<CsrCustomerCreditDto>(csrCustomerCreditDto,"Kredi Eklendi");
@@ -77,5 +76,9 @@ public class CsrCustomerCreditManager implements CsrCustomerCreditService {
             throw new CsrCustomerCreditNotFoundException("Kredi Bulunanamdı!");
         }
         return csrCustomerCredit;
+    }
+    private boolean customerCreditControl(CsrCustomerCredit csrCustomerCredit){
+        //todo:sms service eklenecek
+        return false;
     }
 }
