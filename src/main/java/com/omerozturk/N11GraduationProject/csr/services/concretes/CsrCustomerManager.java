@@ -6,7 +6,9 @@ import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerSaveRequ
 import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrCustomerService;
 import com.omerozturk.N11GraduationProject.csr.services.entityservice.CsrCustomerEntityService;
 import com.omerozturk.N11GraduationProject.csr.utilities.converter.CsrCustomerMapper;
+import com.omerozturk.N11GraduationProject.csr.utilities.exception.CsrCustomerNotCheckRealCustomerException;
 import com.omerozturk.N11GraduationProject.csr.utilities.exception.CsrCustomerNotFoundException;
+import com.omerozturk.N11GraduationProject.gen.adapter.mernisAdapter.CustomerCheckService;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.DataResult;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.Result;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessDataResult;
@@ -21,6 +23,7 @@ import java.util.List;
 public class CsrCustomerManager implements CsrCustomerService {
 
     private final CsrCustomerEntityService csrCustomerEntityService;
+    private final CustomerCheckService customerCheckService;
 
     @Override
     public DataResult<List<CsrCustomerDto>> findAll() {
@@ -78,8 +81,9 @@ public class CsrCustomerManager implements CsrCustomerService {
             CsrCustomerDto csrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(responseCsrCustomer);
             return csrCustomerDto;
         }
-        if (false){
-            //todo:mernis doğrulama yazılacak
+        boolean b = customerCheckService.CheckIfRealCustomer(csrCustomer);
+        if (!b){
+            throw new CsrCustomerNotCheckRealCustomerException("Kullanıcı Bilgileri Hatalı");
         }
         return null;
     }

@@ -9,7 +9,6 @@ import java.util.Date;
 @Data
 public class CsrGuaranteeSaveRequestDto {
     private String explanation;
-    private GuaranteeType guaranteeType;
     private BigDecimal guaranteeAmount;
     private Date operationDate;
     private Long customerId;

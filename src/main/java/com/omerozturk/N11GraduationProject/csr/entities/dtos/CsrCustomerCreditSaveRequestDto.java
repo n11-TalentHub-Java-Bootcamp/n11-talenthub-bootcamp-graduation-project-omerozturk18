@@ -11,8 +11,6 @@ import java.util.Date;
 public class CsrCustomerCreditSaveRequestDto {
     private BigDecimal creditAmount;
     private String resultExplanation;
-    private EnumCreditResult creditResult;
-    private EnumStatus status;
     private Date operationDate;
     private Long crdCreditId;
     private Long csrCustomerId;
