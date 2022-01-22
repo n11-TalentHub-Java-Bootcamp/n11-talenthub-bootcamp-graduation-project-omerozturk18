@@ -23,7 +23,9 @@ public class CsrCustomerCredit implements BaseEntity {
     private Long id;
     private BigDecimal creditAmount;
     private String resultExplanation;
+    @Enumerated(EnumType.STRING)
     private EnumCreditResult creditResult;
+    @Enumerated(EnumType.STRING)
     private EnumStatus status;
     private Date operationDate;
     private Long crdCreditId;

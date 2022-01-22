@@ -25,6 +25,7 @@ public class CsrCustomer implements BaseEntity {
     private String phoneNumber;
     private BigDecimal salary;
     private Date operationDate;
+    @Enumerated(EnumType.STRING)
     private EnumStatus status;
 
 }

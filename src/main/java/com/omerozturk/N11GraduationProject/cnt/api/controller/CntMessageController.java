@@ -2,7 +2,7 @@ package com.omerozturk.N11GraduationProject.cnt.api.controller;
 
 
 
-import com.omerozturk.N11GraduationProject.cnt.entities.dtos.CntMessageSaveRequestDto;
+import com.omerozturk.N11GraduationProject.cnt.entities.dtos.CntMessageSendRequestDto;
 import com.omerozturk.N11GraduationProject.cnt.services.abstracts.CntMessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -44,8 +44,8 @@ public class CntMessageController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody CntMessageSaveRequestDto cntMessageSaveRequestDto){
-        var result = cntMessageService.save(cntMessageSaveRequestDto);
+    public ResponseEntity create(@RequestBody CntMessageSendRequestDto cntMessageSaveRequestDto){
+        var result = cntMessageService.sendMessage(cntMessageSaveRequestDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }

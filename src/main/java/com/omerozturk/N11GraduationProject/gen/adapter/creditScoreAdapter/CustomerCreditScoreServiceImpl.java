@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 public class CustomerCreditScoreServiceImpl implements CustomerCreditScoreService
 {
     @Override
-    public int  calculateCreditScore(int identityNumber) {
-        int lastDigitOfIdentityNumber=identityNumber %10;
+    public int  calculateCreditScore(Long identityNumber) {
+        int lastDigitOfIdentityNumber= Math.toIntExact(identityNumber % 10);
         switch (lastDigitOfIdentityNumber) {
             case 0: {
                 return 2000;

@@ -10,5 +10,6 @@ import java.util.Date;
 public class CsrGuaranteeSaveRequestDto {
     private String explanation;
     private BigDecimal guaranteeAmount;
-    private Long customerId;
+    private GuaranteeType guaranteeType;
+    private Long csrCustomerId;
 }

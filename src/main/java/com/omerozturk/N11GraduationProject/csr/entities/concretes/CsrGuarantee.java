@@ -20,8 +20,9 @@ public class CsrGuarantee implements BaseEntity {
     @SequenceGenerator(name = "generator", sequenceName = "CSR_GUARANTEE_ID_SEQ")
     private Long id;
     private String explanation;
+    @Enumerated(EnumType.STRING)
     private GuaranteeType guaranteeType;
     private BigDecimal guaranteeAmount;
     private Date operationDate;
-    private Long customerId;
+    private Long csrCustomerId;
 }

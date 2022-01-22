@@ -3,7 +3,7 @@ package com.omerozturk.N11GraduationProject.cnt.utilities.converter;
 
 import com.omerozturk.N11GraduationProject.cnt.entities.concretes.CntMessage;
 import com.omerozturk.N11GraduationProject.cnt.entities.dtos.CntMessageDto;
-import com.omerozturk.N11GraduationProject.cnt.entities.dtos.CntMessageSaveRequestDto;
+import com.omerozturk.N11GraduationProject.cnt.entities.dtos.CntMessageSendRequestDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
@@ -20,7 +20,7 @@ public interface CntMessageMapper {
     CntMessage convertCntMessageDtoToCntMessage(CntMessageDto cntSmsDto);
     List<CntMessage> convertCntMessageDtoListToCntMessageList(List<CntMessageDto> cntSmsDtoList);
 
-    CntMessage convertCntMessageSaveRequestDtoToCntMessage(CntMessageSaveRequestDto cntSmsSaveRequestDto);
-    List<CntMessage> convertCntMessageSaveRequestDtoListToCntMessageList(List<CntMessageSaveRequestDto> cntSmsSaveRequestDtoList);
+    CntMessage convertCntMessageSendRequestDtoToCntMessage(CntMessageSendRequestDto cntMessageSendRequestDto);
+    List<CntMessage> convertCntMessageSendRequestDtoListToCntMessageList(List<CntMessageSendRequestDto> cntMessageSendRequestDtoList);
 
 }

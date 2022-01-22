@@ -7,7 +7,7 @@ import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessDataResul
 import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessResult;
 import com.omerozturk.N11GraduationProject.cnt.entities.concretes.CntMessage;
 import com.omerozturk.N11GraduationProject.cnt.entities.dtos.CntMessageDto;
-import com.omerozturk.N11GraduationProject.cnt.entities.dtos.CntMessageSaveRequestDto;
+import com.omerozturk.N11GraduationProject.cnt.entities.dtos.CntMessageSendRequestDto;
 import com.omerozturk.N11GraduationProject.cnt.services.abstracts.CntMessageService;
 import com.omerozturk.N11GraduationProject.cnt.services.entityservice.CntMessageEntityService;
 import com.omerozturk.N11GraduationProject.cnt.utilities.converter.CntMessageMapper;
@@ -50,8 +50,8 @@ public class CntMessageServiceImpl implements CntMessageService {
 
 
     @Override
-    public DataResult<CntMessageDto> save(CntMessageSaveRequestDto cntMessageSaveRequestDto) {
-        CntMessage cntMessage = CntMessageMapper.INSTANCE.convertCntMessageSaveRequestDtoToCntMessage(cntMessageSaveRequestDto);
+    public DataResult<CntMessageDto> sendMessage(CntMessageSendRequestDto cntMessageSaveRequestDto) {
+        CntMessage cntMessage = CntMessageMapper.INSTANCE.convertCntMessageSendRequestDtoToCntMessage(cntMessageSaveRequestDto);
         cntMessage.setOperationDate(new Date());
         cntMessage = cntMessageEntityService.save(cntMessage);
         CntMessageDto cntMessageDto = CntMessageMapper.INSTANCE.convertCntMessageToCntMessageDto(cntMessage);

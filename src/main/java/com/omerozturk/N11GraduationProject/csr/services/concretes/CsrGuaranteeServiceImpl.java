@@ -55,9 +55,9 @@ public class CsrGuaranteeServiceImpl implements CsrGuaranteeService {
     }
 
     @Override
-    public BigDecimal findByTotalCustomerGuarantee(Long customerId) {
-        return null;
-        //todo:
+    public BigDecimal findByCustomerTotalGuarantee(Long customerId) {
+        BigDecimal customerTotalGuarantee = csrGuaranteeEntityService.findByCustomerTotalGuarantee(customerId);
+        return customerTotalGuarantee;
     }
 
     @Override

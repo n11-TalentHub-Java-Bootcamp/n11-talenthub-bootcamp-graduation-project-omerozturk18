@@ -17,6 +17,7 @@ import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -54,15 +55,14 @@ public class CsrCustomerServiceImpl implements CsrCustomerService {
     @Override
     public DataResult<CsrCustomerDto> save(CsrCustomerSaveRequestDto csrCustomerSaveRequestDto) {
         CsrCustomer csrCustomer = CsrCustomerMapper.INSTANCE.convertCsrCustomerSaveRequestDtoToCsrCustomer(csrCustomerSaveRequestDto);
-        CsrCustomerDto controller= csrCustomerControl(csrCustomer);
-        if(controller!=null){
-            return new SuccessDataResult<CsrCustomerDto>(controller,"Müşteri Zaten Kayıtlı");
-        }
+        csrCustomer= csrCustomerControl(csrCustomer);
+        csrCustomer.setPhoneNumber(csrCustomerSaveRequestDto.getPhoneNumber());
+        csrCustomer.setSalary(csrCustomerSaveRequestDto.getSalary());
         csrCustomer.setOperationDate(new Date());
         csrCustomer.setStatus(EnumStatus.ACTIVE);
         csrCustomer = csrCustomerEntityService.save(csrCustomer);
-        CsrCustomerDto csrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
-        return new SuccessDataResult<CsrCustomerDto>(csrCustomerDto,"İşlem Başarılı");
+        CsrCustomerDto newCsrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
+        return new SuccessDataResult<>(newCsrCustomerDto,"İşlem Başarılı");
     }
 
     @Override
@@ -81,11 +81,10 @@ public class CsrCustomerServiceImpl implements CsrCustomerService {
         }
         return csrCustomer;
     }
-    private CsrCustomerDto csrCustomerControl(CsrCustomer csrCustomer){
+    private CsrCustomer csrCustomerControl(CsrCustomer csrCustomer){
         CsrCustomer responseCsrCustomer= csrCustomerEntityService.findByIdentityNumber(csrCustomer.getIdentityNumber());
-        if(responseCsrCustomer!=null && csrCustomer.getStatus() == EnumStatus.ACTIVE){
-            CsrCustomerDto csrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(responseCsrCustomer);
-            return csrCustomerDto;
+        if(responseCsrCustomer!=null && responseCsrCustomer.getStatus() == EnumStatus.ACTIVE){
+            return responseCsrCustomer;
         }
         boolean checkIfRealCustomer = customerCheckService.CheckIfRealCustomer(csrCustomer);
         if (!checkIfRealCustomer){

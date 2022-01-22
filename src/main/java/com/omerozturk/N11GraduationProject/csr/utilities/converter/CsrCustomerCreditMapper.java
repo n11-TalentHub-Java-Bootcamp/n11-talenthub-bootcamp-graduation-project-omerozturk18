@@ -18,10 +18,10 @@ public interface CsrCustomerCreditMapper {
     CsrCustomerCreditMapper INSTANCE = Mappers.getMapper(CsrCustomerCreditMapper.class);
 
     CsrCustomerCreditDto convertCsrCustomerCreditToCsrCustomerCreditDto(CsrCustomerCredit csrCustomerCredit);
-    List<CsrCustomerCreditDto> convertCsrCustomerCreditListToCsrCustomerCreditDtoList(List<CsrCustomerCredit> CsrCustomerCreditList);
+    List<CsrCustomerCreditDto> convertCsrCustomerCreditListToCsrCustomerCreditDtoList(List<CsrCustomerCredit> csrCustomerCreditList);
 
-    CsrCustomerCredit convertCsrCustomerCreditListToCsrCustomerCredit(CsrCustomerCreditDto CsrCustomerCreditDto);
-    List<CsrCustomerCredit> convertCsrCustomerCreditDtoListToCsrCustomerCreditList(List<CsrCustomerCredit> CsrCustomerCreditDtoList);
+    CsrCustomerCredit convertCsrCustomerCreditDtoToCsrCustomerCredit(CsrCustomerCreditDto csrCustomerCreditDto);
+    List<CsrCustomerCredit> convertCsrCustomerCreditDtoListToCsrCustomerCreditList(List<CsrCustomerCredit> csrCustomerCreditDtoList);
 
     @Mapping(target = "creditAmount",  ignore = true)
     @Mapping(target = "resultExplanation",  ignore = true)

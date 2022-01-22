@@ -20,6 +20,7 @@ public class CrdCredit implements BaseEntity {
     private String shortName;
     private String explanation;
     private Date operationDate;
+    @Enumerated(EnumType.STRING)
     private EnumStatus status;
 
 }

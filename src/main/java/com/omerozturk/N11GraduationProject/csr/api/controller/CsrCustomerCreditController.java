@@ -2,6 +2,7 @@ package com.omerozturk.N11GraduationProject.csr.api.controller;
 
 
 
+import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditAnswerDto;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditSaveRequestDto;
 import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrCustomerCreditService;
 import lombok.RequiredArgsConstructor;
@@ -63,6 +64,14 @@ public class CsrCustomerCreditController {
     @PostMapping
     public ResponseEntity applyForCredit(@RequestBody CsrCustomerCreditSaveRequestDto csrCustomerCreditSaveRequestDto){
         var result = csrCustomerCreditService.applyForCredit(csrCustomerCreditSaveRequestDto);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
+    @PostMapping("/answer")
+    public ResponseEntity applyForCredit(@RequestBody CsrCustomerCreditAnswerDto csrCustomerCreditAnswerDto){
+        var result = csrCustomerCreditService.customerAnswerCredit(csrCustomerCreditAnswerDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }

@@ -13,6 +13,6 @@ public interface CntMessageDao extends JpaRepository<CntMessage, Long> {
     @Query("SELECT cntMessage  FROM" +
             " CntMessage cntMessage" +
             " LEFT JOIN CsrCustomer csrCustomer on cntMessage.csrCustomerId=csrCustomer.id" +
-            " WHERE csrCustomer.phoneNumber =: phoneNumber")
+            " WHERE csrCustomer.phoneNumber = :phoneNumber")
     List<CntMessage> findByPhoneNumber(String phoneNumber);
 }

@@ -12,7 +12,7 @@ public interface CsrGuaranteeService {
     DataResult<List<CsrGuaranteeDto>> findAll();
     DataResult<CsrGuaranteeDto> findById(Long id);
     DataResult<List<CsrGuaranteeDto>> findByCustomerId(Long customerId);
-    BigDecimal findByTotalCustomerGuarantee(Long customerId);
+    BigDecimal findByCustomerTotalGuarantee(Long customerId);
     DataResult<CsrGuaranteeDto> save(CsrGuaranteeSaveRequestDto csrGuaranteeSaveRequestDto);
     Result delete(Long id);
 }

@@ -2,6 +2,8 @@ package com.omerozturk.N11GraduationProject.gen.adapter.mernisAdapter;
 
 import com.omerozturk.N11GraduationProject.csr.entities.concretes.CsrCustomer;
 import org.springframework.stereotype.Service;
+import tr.identity.check.ws.client.KPSPublic;
+import tr.identity.check.ws.client.KPSPublicSoap;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -10,15 +12,16 @@ import java.time.ZoneId;
 public class MernisServiceAdapter implements CustomerCheckService{
     @Override
     public boolean CheckIfRealCustomer(CsrCustomer csrCustomer) {
-       /* DQQKPSPublicSoap publicSoap = new DQQKPSPublicSoap();
+        KPSPublic service=new KPSPublic();
+       KPSPublicSoap soapService= service.getKPSPublicSoap();
 
         try {
             int birthYear = LocalDateTime.ofInstant(
                     csrCustomer.getDateOfBirth().toInstant(), ZoneId.systemDefault()).getYear() ;
-            return publicSoap.TCKimlikNoDogrula(Long.valueOf(csrCustomer.getIdentityNumber()),csrCustomer.getFirstName().toUpperCase(),csrCustomer.getLastName().toUpperCase(),birthYear);
+            return soapService.tcKimlikNoDogrula(Long.valueOf(csrCustomer.getIdentityNumber()),csrCustomer.getFirstName().toUpperCase(),csrCustomer.getLastName().toUpperCase(),birthYear);
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
         return false;
     }
 }

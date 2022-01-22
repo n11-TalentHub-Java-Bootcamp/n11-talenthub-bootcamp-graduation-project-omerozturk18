@@ -1,5 +1,6 @@
 package com.omerozturk.N11GraduationProject.csr.services.abstracts;
 
+import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditAnswerDto;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditDto;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditSaveRequestDto;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.DataResult;
@@ -14,5 +15,6 @@ public interface CsrCustomerCreditService {
     DataResult<List<CsrCustomerCreditDto>> findActiveCreditsByCustomerId(Long customerId);
     DataResult<List<CsrCustomerCreditDto>> findByCreditId(Long creditId);
     DataResult<CsrCustomerCreditDto> applyForCredit(CsrCustomerCreditSaveRequestDto csrCustomerCreditSaveRequestDto);
-    Result delete(Long id);
+    DataResult<CsrCustomerCreditDto> customerAnswerCredit(CsrCustomerCreditAnswerDto csrCustomerCreditAnswerDto);
+     Result delete(Long id);
 }

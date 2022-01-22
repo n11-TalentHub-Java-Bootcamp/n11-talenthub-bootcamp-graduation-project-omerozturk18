@@ -15,6 +15,6 @@ public class CsrGuaranteeDto {
     private GuaranteeType guaranteeType;
     private BigDecimal guaranteeAmount;
     private Date operationDate;
-    private Long customerId;
+    private Long csrCustomerId;
 
 }
