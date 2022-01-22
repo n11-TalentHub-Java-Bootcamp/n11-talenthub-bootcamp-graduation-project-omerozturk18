@@ -11,7 +11,8 @@ public interface CsrCustomerCreditService {
     DataResult<List<CsrCustomerCreditDto>> findAll();
     DataResult<CsrCustomerCreditDto> findById(Long id);
     DataResult<List<CsrCustomerCreditDto>> findByCustomerId(Long customerId);
+    DataResult<List<CsrCustomerCreditDto>> findActiveCreditsByCustomerId(Long customerId);
     DataResult<List<CsrCustomerCreditDto>> findByCreditId(Long creditId);
-    DataResult<CsrCustomerCreditDto> save(CsrCustomerCreditSaveRequestDto csrCustomerCreditSaveRequestDto);
+    DataResult<CsrCustomerCreditDto> applyForCredit(CsrCustomerCreditSaveRequestDto csrCustomerCreditSaveRequestDto);
     Result delete(Long id);
 }

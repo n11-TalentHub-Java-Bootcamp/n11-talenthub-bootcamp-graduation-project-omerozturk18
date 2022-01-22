@@ -13,6 +13,4 @@ public class CrdCreditDto {
     private String name;
     private String shortName;
     private String explanation;
-    private Date operationDate;
-    private EnumStatus status;
 }

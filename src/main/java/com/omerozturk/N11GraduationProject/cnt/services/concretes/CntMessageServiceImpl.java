@@ -15,11 +15,12 @@ import com.omerozturk.N11GraduationProject.cnt.utilities.exception.CntMessageNot
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CntMessageManager implements CntMessageService {
+public class CntMessageServiceImpl implements CntMessageService {
 
     private final CntMessageEntityService cntMessageEntityService;
 
@@ -51,6 +52,7 @@ public class CntMessageManager implements CntMessageService {
     @Override
     public DataResult<CntMessageDto> save(CntMessageSaveRequestDto cntMessageSaveRequestDto) {
         CntMessage cntMessage = CntMessageMapper.INSTANCE.convertCntMessageSaveRequestDtoToCntMessage(cntMessageSaveRequestDto);
+        cntMessage.setOperationDate(new Date());
         cntMessage = cntMessageEntityService.save(cntMessage);
         CntMessageDto cntMessageDto = CntMessageMapper.INSTANCE.convertCntMessageToCntMessageDto(cntMessage);
         return new SuccessDataResult<CntMessageDto>(cntMessageDto,"Sms Eklendi");

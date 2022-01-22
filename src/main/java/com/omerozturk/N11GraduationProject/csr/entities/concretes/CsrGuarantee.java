@@ -3,6 +3,7 @@ package com.omerozturk.N11GraduationProject.csr.entities.concretes;
 
 import com.omerozturk.N11GraduationProject.csr.entities.enums.GuaranteeType;
 import com.omerozturk.N11GraduationProject.gen.utilities.entity.BaseEntity;
+import com.omerozturk.N11GraduationProject.gen.utilities.enums.EnumStatus;
 import lombok.Data;
 
 import javax.persistence.*;

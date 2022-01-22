@@ -1,10 +1,12 @@
 package com.omerozturk.N11GraduationProject.csr.entities.concretes;
 
 import com.omerozturk.N11GraduationProject.gen.utilities.entity.BaseEntity;
+import com.omerozturk.N11GraduationProject.gen.utilities.enums.EnumStatus;
 import lombok.Data;
 
 import javax.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -21,6 +23,8 @@ public class CsrCustomer implements BaseEntity {
     private String lastName;
     private Date dateOfBirth;
     private String phoneNumber;
+    private BigDecimal salary;
     private Date operationDate;
+    private EnumStatus status;
 
 }

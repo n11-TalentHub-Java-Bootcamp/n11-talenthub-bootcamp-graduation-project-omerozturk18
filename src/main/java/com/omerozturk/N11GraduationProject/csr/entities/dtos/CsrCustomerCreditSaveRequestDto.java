@@ -9,9 +9,6 @@ import java.util.Date;
 
 @Data
 public class CsrCustomerCreditSaveRequestDto {
-    private BigDecimal creditAmount;
-    private String resultExplanation;
-    private Date operationDate;
     private Long crdCreditId;
     private Long csrCustomerId;
 

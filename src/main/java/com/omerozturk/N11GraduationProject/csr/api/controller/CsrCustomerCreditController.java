@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/credits")
+@RequestMapping("/api/v1/customer-credits")
 @CrossOrigin
 @RequiredArgsConstructor
 public class CsrCustomerCreditController {
@@ -42,6 +42,14 @@ public class CsrCustomerCreditController {
         }
         return ResponseEntity.badRequest().body(result);
     }
+    @GetMapping("/active-credits-customer/{customerId}")
+    public ResponseEntity getActiveCreditsByCustomerId(@PathVariable Long customerId){
+        var result =  csrCustomerCreditService.findActiveCreditsByCustomerId(customerId);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
     @GetMapping("/credit/{creditId}")
     public ResponseEntity findByCreditId(@PathVariable Long creditId){
         var result =  csrCustomerCreditService.findByCreditId(creditId);
@@ -53,8 +61,8 @@ public class CsrCustomerCreditController {
 
 
     @PostMapping
-    public ResponseEntity create(@RequestBody CsrCustomerCreditSaveRequestDto csrCustomerCreditSaveRequestDto){
-        var result = csrCustomerCreditService.save(csrCustomerCreditSaveRequestDto);
+    public ResponseEntity applyForCredit(@RequestBody CsrCustomerCreditSaveRequestDto csrCustomerCreditSaveRequestDto){
+        var result = csrCustomerCreditService.applyForCredit(csrCustomerCreditSaveRequestDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }

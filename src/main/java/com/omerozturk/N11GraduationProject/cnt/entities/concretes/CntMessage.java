@@ -19,7 +19,6 @@ public class CntMessage implements BaseEntity {
     private String title;
     private String contents;
     private Date operationDate;
-    private EnumStatus status;
     private Long csrCustomerId;
 
 }

@@ -7,6 +7,7 @@ import com.omerozturk.N11GraduationProject.crd.services.abstracts.CrdCreditServi
 import com.omerozturk.N11GraduationProject.crd.services.entityservice.CrdCreditEntityService;
 import com.omerozturk.N11GraduationProject.crd.utilities.converter.CrdCreditMapper;
 import com.omerozturk.N11GraduationProject.crd.utilities.exception.CrdCreditNotFoundException;
+import com.omerozturk.N11GraduationProject.gen.utilities.enums.EnumStatus;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.DataResult;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.Result;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessDataResult;
@@ -15,11 +16,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CrdCreditManager implements CrdCreditService {
+public class CrdCreditServiceImpl implements CrdCreditService {
 
     private final CrdCreditEntityService crdCreditEntityService;
 
@@ -42,7 +44,7 @@ public class CrdCreditManager implements CrdCreditService {
    @Override
     public DataResult<CrdCreditDto> findByCreditName(String creditName){
        CrdCredit crdCredit = crdCreditEntityService.findByCreditName(creditName);
-        if (crdCredit == null){
+        if (crdCredit == null || crdCredit.getStatus() != EnumStatus.ACTIVE){
             throw new CrdCreditNotFoundException("Kredi Bulunanamdı!");
         }
         CrdCreditDto crdCreditDto = CrdCreditMapper.INSTANCE.convertCrdCreditToCrdCreditDto(crdCredit);
@@ -53,6 +55,8 @@ public class CrdCreditManager implements CrdCreditService {
     public DataResult<CrdCreditDto> save(CrdCreditSaveRequestDto crdCreditSaveRequestDto) {
         CrdCredit crdCredit =
                 CrdCreditMapper.INSTANCE.convertCrdCreditSaveRequestDtoToCrdCredit(crdCreditSaveRequestDto);
+        crdCredit.setOperationDate(new Date());
+        crdCredit.setStatus(EnumStatus.ACTIVE);
         crdCredit = crdCreditEntityService.save(crdCredit);
         CrdCreditDto crdCreditDto =
                 CrdCreditMapper.INSTANCE.convertCrdCreditToCrdCreditDto(crdCredit);
@@ -62,13 +66,15 @@ public class CrdCreditManager implements CrdCreditService {
     @Override
     public Result delete(Long id) {
         CrdCredit crdCredit = getCrdCredit(id);
-        crdCreditEntityService.delete(crdCredit);
+        crdCredit.setOperationDate(new Date());
+        crdCredit.setStatus(EnumStatus.DELETED);
+        crdCreditEntityService.save(crdCredit);
         return new SuccessResult(" Kredi Silindi");
     }
 
     private CrdCredit getCrdCredit(Long id){
         CrdCredit crdCredit = crdCreditEntityService.findById(id);
-        if (crdCredit == null){
+        if (crdCredit == null || crdCredit.getStatus() != EnumStatus.ACTIVE){
             throw new CrdCreditNotFoundException("Kredi Bulunanamdı!");
         }
         return crdCredit;

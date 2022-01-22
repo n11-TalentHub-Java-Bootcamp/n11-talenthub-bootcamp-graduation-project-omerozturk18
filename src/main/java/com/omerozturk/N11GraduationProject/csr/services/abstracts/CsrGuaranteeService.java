@@ -5,12 +5,14 @@ import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrGuaranteeSaveReq
 import com.omerozturk.N11GraduationProject.gen.utilities.result.DataResult;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.Result;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface CsrGuaranteeService {
     DataResult<List<CsrGuaranteeDto>> findAll();
     DataResult<CsrGuaranteeDto> findById(Long id);
     DataResult<List<CsrGuaranteeDto>> findByCustomerId(Long customerId);
+    BigDecimal findByTotalCustomerGuarantee(Long customerId);
     DataResult<CsrGuaranteeDto> save(CsrGuaranteeSaveRequestDto csrGuaranteeSaveRequestDto);
     Result delete(Long id);
 }

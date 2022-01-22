@@ -1,15 +1,12 @@
 package com.omerozturk.N11GraduationProject.csr.services.concretes;
 
-import com.omerozturk.N11GraduationProject.csr.entities.concretes.CsrCustomer;
 import com.omerozturk.N11GraduationProject.csr.entities.concretes.CsrGuarantee;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrGuaranteeDto;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrGuaranteeSaveRequestDto;
-import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerSaveRequestDto;
 import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrGuaranteeService;
 
 import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrCustomerService;
 import com.omerozturk.N11GraduationProject.csr.services.entityservice.CsrGuaranteeEntityService;
-import com.omerozturk.N11GraduationProject.csr.utilities.converter.CsrGuaranteeMapper;
 import com.omerozturk.N11GraduationProject.csr.utilities.converter.CsrGuaranteeMapper;
 import com.omerozturk.N11GraduationProject.csr.utilities.exception.CsrCustomerNotFoundException;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.DataResult;
@@ -19,11 +16,13 @@ import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CsrGuaranteeManager implements CsrGuaranteeService {
+public class CsrGuaranteeServiceImpl implements CsrGuaranteeService {
 
     private final CsrGuaranteeEntityService csrGuaranteeEntityService;
     private final CsrCustomerService csrCustomerService;
@@ -56,9 +55,16 @@ public class CsrGuaranteeManager implements CsrGuaranteeService {
     }
 
     @Override
+    public BigDecimal findByTotalCustomerGuarantee(Long customerId) {
+        return null;
+        //todo:
+    }
+
+    @Override
     public DataResult<CsrGuaranteeDto> save(CsrGuaranteeSaveRequestDto csrGuaranteeSaveRequestDto) {
         CsrGuarantee csrGuarantee =
                 CsrGuaranteeMapper.INSTANCE.convertCsrGuaranteeSaveRequestDtoToCsrGuarantee(csrGuaranteeSaveRequestDto);
+        csrGuarantee.setOperationDate(new Date());
         csrGuarantee = csrGuaranteeEntityService.save(csrGuarantee);
         CsrGuaranteeDto csrGuaranteeDto =
                 CsrGuaranteeMapper.INSTANCE.convertCsrGuaranteeToCsrGuaranteeDto(csrGuarantee);

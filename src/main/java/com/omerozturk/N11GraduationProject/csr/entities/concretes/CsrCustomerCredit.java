@@ -1,6 +1,7 @@
 package com.omerozturk.N11GraduationProject.csr.entities.concretes;
 
 
+import com.omerozturk.N11GraduationProject.csr.entities.enums.EnumCreditResult;
 import com.omerozturk.N11GraduationProject.gen.utilities.entity.BaseEntity;
 import com.omerozturk.N11GraduationProject.gen.utilities.enums.EnumStatus;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class CsrCustomerCredit implements BaseEntity {
     private Long id;
     private BigDecimal creditAmount;
     private String resultExplanation;
+    private EnumCreditResult creditResult;
     private EnumStatus status;
     private Date operationDate;
     private Long crdCreditId;

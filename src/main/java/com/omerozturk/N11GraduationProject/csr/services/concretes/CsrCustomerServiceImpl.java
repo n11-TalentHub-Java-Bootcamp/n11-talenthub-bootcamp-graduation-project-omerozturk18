@@ -9,6 +9,7 @@ import com.omerozturk.N11GraduationProject.csr.utilities.converter.CsrCustomerMa
 import com.omerozturk.N11GraduationProject.csr.utilities.exception.CsrCustomerNotCheckRealCustomerException;
 import com.omerozturk.N11GraduationProject.csr.utilities.exception.CsrCustomerNotFoundException;
 import com.omerozturk.N11GraduationProject.gen.adapter.mernisAdapter.CustomerCheckService;
+import com.omerozturk.N11GraduationProject.gen.utilities.enums.EnumStatus;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.DataResult;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.Result;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessDataResult;
@@ -16,11 +17,12 @@ import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CsrCustomerManager implements CsrCustomerService {
+public class CsrCustomerServiceImpl implements CsrCustomerService {
 
     private final CsrCustomerEntityService csrCustomerEntityService;
     private final CustomerCheckService customerCheckService;
@@ -34,19 +36,19 @@ public class CsrCustomerManager implements CsrCustomerService {
 
     @Override
     public DataResult<CsrCustomerDto> findById(Long id) {
-        CsrCustomer csrCustomer = getCsrCustomer(id);
+        CsrCustomer csrCustomer =getCsrCustomer(id);
         CsrCustomerDto csrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
-        return new SuccessDataResult<CsrCustomerDto>(csrCustomerDto,"Kullanıcı Getirildi");
+        return new SuccessDataResult<CsrCustomerDto>(csrCustomerDto,"Müşteri Getirildi");
     }
 
     @Override
     public DataResult<CsrCustomerDto> findByIdentityNumber(String identityNumber) {
         CsrCustomer csrCustomer = csrCustomerEntityService.findByIdentityNumber(identityNumber);
         if (csrCustomer == null){
-            throw new CsrCustomerNotFoundException("Kullanıcı Bulunanamdı!");
+            throw new CsrCustomerNotFoundException("Müşteri Bulunanamdı!");
         }
         CsrCustomerDto csrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
-        return new SuccessDataResult<CsrCustomerDto>(csrCustomerDto,"Kullanıcı Getirildi");
+        return new SuccessDataResult<CsrCustomerDto>(csrCustomerDto,"Müşteri Getirildi");
     }
 
     @Override
@@ -54,36 +56,40 @@ public class CsrCustomerManager implements CsrCustomerService {
         CsrCustomer csrCustomer = CsrCustomerMapper.INSTANCE.convertCsrCustomerSaveRequestDtoToCsrCustomer(csrCustomerSaveRequestDto);
         CsrCustomerDto controller= csrCustomerControl(csrCustomer);
         if(controller!=null){
-            return new SuccessDataResult<CsrCustomerDto>(controller,"Kullanıcı Zaten Kayıtlı");
+            return new SuccessDataResult<CsrCustomerDto>(controller,"Müşteri Zaten Kayıtlı");
         }
+        csrCustomer.setOperationDate(new Date());
+        csrCustomer.setStatus(EnumStatus.ACTIVE);
         csrCustomer = csrCustomerEntityService.save(csrCustomer);
         CsrCustomerDto csrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
-        return new SuccessDataResult<CsrCustomerDto>(csrCustomerDto,"Kullanıcı Eklendi");
+        return new SuccessDataResult<CsrCustomerDto>(csrCustomerDto,"İşlem Başarılı");
     }
 
     @Override
     public Result delete(Long id) {
         CsrCustomer csrCustomer = getCsrCustomer(id);
-        csrCustomerEntityService.delete(csrCustomer);
-        return new SuccessResult(" Kullanıcı Silindi");
+        csrCustomer.setOperationDate(new Date());
+        csrCustomer.setStatus(EnumStatus.DELETED);
+        csrCustomerEntityService.save(csrCustomer);
+        return new SuccessResult(" Müşteri Silindi");
     }
 
     private CsrCustomer getCsrCustomer(Long id){
         CsrCustomer csrCustomer = csrCustomerEntityService.findById(id);
         if (csrCustomer == null){
-            throw new CsrCustomerNotFoundException("Kullanıcı Bulunanamdı!");
+            throw new CsrCustomerNotFoundException("Müşteri Bulunanamdı!");
         }
         return csrCustomer;
     }
     private CsrCustomerDto csrCustomerControl(CsrCustomer csrCustomer){
         CsrCustomer responseCsrCustomer= csrCustomerEntityService.findByIdentityNumber(csrCustomer.getIdentityNumber());
-        if(responseCsrCustomer!=null){
+        if(responseCsrCustomer!=null && csrCustomer.getStatus() == EnumStatus.ACTIVE){
             CsrCustomerDto csrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(responseCsrCustomer);
             return csrCustomerDto;
         }
-        boolean b = customerCheckService.CheckIfRealCustomer(csrCustomer);
-        if (!b){
-            throw new CsrCustomerNotCheckRealCustomerException("Kullanıcı Bilgileri Hatalı");
+        boolean checkIfRealCustomer = customerCheckService.CheckIfRealCustomer(csrCustomer);
+        if (!checkIfRealCustomer){
+            throw new CsrCustomerNotCheckRealCustomerException("Müşteri Bilgileri Hatalı");
         }
         return null;
     }

@@ -12,8 +12,6 @@ public class CntMessageSaveRequestDto implements BaseEntity {
     private Long id;
     private String title;
     private String contents;
-    private Date operationDate;
-    private EnumStatus status;
     private Long csrCustomerId;
 
 }

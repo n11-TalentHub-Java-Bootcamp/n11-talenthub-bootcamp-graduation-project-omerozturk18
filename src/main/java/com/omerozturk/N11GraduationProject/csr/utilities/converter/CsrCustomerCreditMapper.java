@@ -6,6 +6,7 @@ import com.omerozturk.N11GraduationProject.csr.entities.concretes.CsrCustomerCre
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditDto;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditSaveRequestDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
@@ -22,6 +23,8 @@ public interface CsrCustomerCreditMapper {
     CsrCustomerCredit convertCsrCustomerCreditListToCsrCustomerCredit(CsrCustomerCreditDto CsrCustomerCreditDto);
     List<CsrCustomerCredit> convertCsrCustomerCreditDtoListToCsrCustomerCreditList(List<CsrCustomerCredit> CsrCustomerCreditDtoList);
 
+    @Mapping(target = "creditAmount",  ignore = true)
+    @Mapping(target = "resultExplanation",  ignore = true)
     CsrCustomerCredit convertCsrCustomerCreditSaveRequestDtoToCsrCustomerCredit(CsrCustomerCreditSaveRequestDto csrCustomerCreditSaveRequestDto);
     List<CsrCustomerCredit> convertCsrCustomerCreditSaveRequestDtoListToCsrCustomerCreditList(List<CsrCustomerCreditSaveRequestDto> csrCustomerCreditSaveRequestDtoList);
 
