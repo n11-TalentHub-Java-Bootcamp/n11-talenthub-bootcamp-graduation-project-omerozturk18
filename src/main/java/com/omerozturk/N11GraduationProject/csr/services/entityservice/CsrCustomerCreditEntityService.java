@@ -25,6 +25,12 @@ public class CsrCustomerCreditEntityService extends BaseEntityService<CsrCustome
     }
 
     public CsrCustomerCredit findHaveSystemApprovedCreditByCustomerId(Long csrCustomerId) {
-        return getDao().findByCrdCreditIdAndAndCreditResult(csrCustomerId, EnumCreditResult.SYSTEM_APPROVED);
+        return getDao().findByCsrCustomerIdAndAndCreditResult(csrCustomerId, EnumCreditResult.SYSTEM_APPROVED);
+    }
+    public List<CsrCustomerCredit> findByCustomerIdentityNumber(String identityNumber){
+        return getDao().findByCustomerIdentityNumber(identityNumber);
+    }
+    public CsrCustomerCredit findByCustomerIdentityNumberAndSystemApproved(String identityNumber){
+        return getDao().findByCustomerIdentityNumberAndSystemApproved(identityNumber);
     }
 }

@@ -1,6 +1,10 @@
 package com.omerozturk.N11GraduationProject.cnt.services.concretes;
 
 
+import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerDto;
+import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrCustomerService;
+import com.omerozturk.N11GraduationProject.gen.adapter.twilioAdapter.TwilioService;
+import com.omerozturk.N11GraduationProject.gen.utilities.entity.SmsRequest;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.DataResult;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.Result;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessDataResult;
@@ -23,18 +27,22 @@ import java.util.List;
 public class CntMessageServiceImpl implements CntMessageService {
 
     private final CntMessageEntityService cntMessageEntityService;
+    private final CsrCustomerService csrCustomerService;
+    private final TwilioService twilioService;
 
     @Override
     public DataResult<List<CntMessageDto>> findAll() {
         List<CntMessage> cntMessageList = cntMessageEntityService.findAll();
-        List<CntMessageDto> cntMessageDtoList = CntMessageMapper.INSTANCE.convertCntMessageListToCntMessageDtoList(cntMessageList);
+        List<CntMessageDto> cntMessageDtoList = CntMessageMapper
+                .INSTANCE.convertCntMessageListToCntMessageDtoList(cntMessageList);
         return new SuccessDataResult<List<CntMessageDto>>(cntMessageDtoList,"Smsler Listelendi");
     }
 
     @Override
     public DataResult<CntMessageDto> findById(Long id) {
         CntMessage cntMessage = getCntMessage(id);
-        CntMessageDto cntMessageDto = CntMessageMapper.INSTANCE.convertCntMessageToCntMessageDto(cntMessage);
+        CntMessageDto cntMessageDto = CntMessageMapper
+                .INSTANCE.convertCntMessageToCntMessageDto(cntMessage);
         return new SuccessDataResult<CntMessageDto>(cntMessageDto,"Sms Getirildi");
     }
 
@@ -44,17 +52,23 @@ public class CntMessageServiceImpl implements CntMessageService {
         if (cntMessageList.size() < 1){
             throw new CntMessageNotFoundException("Bu Telefon Numarasına Ait Sms Bulunanamdı!");
         }
-        List<CntMessageDto> cntMessageDtoList = CntMessageMapper.INSTANCE.convertCntMessageListToCntMessageDtoList(cntMessageList);
+        List<CntMessageDto> cntMessageDtoList = CntMessageMapper
+                .INSTANCE.convertCntMessageListToCntMessageDtoList(cntMessageList);
         return new SuccessDataResult<List<CntMessageDto>>(cntMessageDtoList,"Telefon Numarasına Ait Smsler Listelendi");
     }
 
 
     @Override
     public DataResult<CntMessageDto> sendMessage(CntMessageSendRequestDto cntMessageSaveRequestDto) {
-        CntMessage cntMessage = CntMessageMapper.INSTANCE.convertCntMessageSendRequestDtoToCntMessage(cntMessageSaveRequestDto);
+        CntMessage cntMessage = CntMessageMapper
+                .INSTANCE.convertCntMessageSendRequestDtoToCntMessage(cntMessageSaveRequestDto);
         cntMessage.setOperationDate(new Date());
+        DataResult<CsrCustomerDto> customerDtoDataResult = csrCustomerService.findById(cntMessage.getCsrCustomerId());
+        SmsRequest smsRequest=new SmsRequest(customerDtoDataResult.getData().getPhoneNumber(),cntMessage.getContents());
+        twilioService.sendSms(smsRequest);
         cntMessage = cntMessageEntityService.save(cntMessage);
-        CntMessageDto cntMessageDto = CntMessageMapper.INSTANCE.convertCntMessageToCntMessageDto(cntMessage);
+        CntMessageDto cntMessageDto = CntMessageMapper
+                .INSTANCE.convertCntMessageToCntMessageDto(cntMessage);
         return new SuccessDataResult<CntMessageDto>(cntMessageDto,"Sms Eklendi");
     }
 

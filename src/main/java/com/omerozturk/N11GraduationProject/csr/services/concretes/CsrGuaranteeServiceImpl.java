@@ -30,16 +30,16 @@ public class CsrGuaranteeServiceImpl implements CsrGuaranteeService {
     @Override
     public DataResult<List<CsrGuaranteeDto>> findAll() {
         List<CsrGuarantee> csrGuaranteeList = csrGuaranteeEntityService.findAll();
-        List<CsrGuaranteeDto> csrGuaranteeDtoList =
-                CsrGuaranteeMapper.INSTANCE.convertCsrGuaranteeListToCsrGuaranteeDtoList(csrGuaranteeList);
+        List<CsrGuaranteeDto> csrGuaranteeDtoList = CsrGuaranteeMapper
+                .INSTANCE.convertCsrGuaranteeListToCsrGuaranteeDtoList(csrGuaranteeList);
         return new SuccessDataResult<List<CsrGuaranteeDto>>(csrGuaranteeDtoList,"Teminatlar Listelendi");
     }
 
     @Override
     public DataResult<CsrGuaranteeDto> findById(Long id) {
         CsrGuarantee csrCustomer = getCsrGuarantee(id);
-        CsrGuaranteeDto customerGuaranteeDto =
-                CsrGuaranteeMapper.INSTANCE.convertCsrGuaranteeToCsrGuaranteeDto(csrCustomer);
+        CsrGuaranteeDto customerGuaranteeDto = CsrGuaranteeMapper
+                .INSTANCE.convertCsrGuaranteeToCsrGuaranteeDto(csrCustomer);
         return new SuccessDataResult<CsrGuaranteeDto>(customerGuaranteeDto,"Teminat Getirildi");
     }
 
@@ -50,7 +50,8 @@ public class CsrGuaranteeServiceImpl implements CsrGuaranteeService {
         if (csrGuaranteeList.isEmpty()){
             throw new CsrCustomerNotFoundException("Kullanıcıya Ait Teminat Bulunanamdı!");
         }
-        List<CsrGuaranteeDto> customerGuaranteeDtoList = CsrGuaranteeMapper.INSTANCE.convertCsrGuaranteeListToCsrGuaranteeDtoList(csrGuaranteeList);
+        List<CsrGuaranteeDto> customerGuaranteeDtoList = CsrGuaranteeMapper
+                .INSTANCE.convertCsrGuaranteeListToCsrGuaranteeDtoList(csrGuaranteeList);
         return new SuccessDataResult<List<CsrGuaranteeDto>>(customerGuaranteeDtoList,"Kullanıcının Teminatları Getirildi");
     }
 
@@ -66,8 +67,8 @@ public class CsrGuaranteeServiceImpl implements CsrGuaranteeService {
                 CsrGuaranteeMapper.INSTANCE.convertCsrGuaranteeSaveRequestDtoToCsrGuarantee(csrGuaranteeSaveRequestDto);
         csrGuarantee.setOperationDate(new Date());
         csrGuarantee = csrGuaranteeEntityService.save(csrGuarantee);
-        CsrGuaranteeDto csrGuaranteeDto =
-                CsrGuaranteeMapper.INSTANCE.convertCsrGuaranteeToCsrGuaranteeDto(csrGuarantee);
+        CsrGuaranteeDto csrGuaranteeDto = CsrGuaranteeMapper
+                .INSTANCE.convertCsrGuaranteeToCsrGuaranteeDto(csrGuarantee);
         return new SuccessDataResult<CsrGuaranteeDto>(csrGuaranteeDto,"Teminat Eklendi");
     }
 

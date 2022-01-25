@@ -6,8 +6,11 @@ import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditAn
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditSaveRequestDto;
 import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrCustomerCreditService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/api/v1/customer-credits")
@@ -70,8 +73,24 @@ public class CsrCustomerCreditController {
         return ResponseEntity.badRequest().body(result);
     }
     @PostMapping("/answer")
-    public ResponseEntity applyForCredit(@RequestBody CsrCustomerCreditAnswerDto csrCustomerCreditAnswerDto){
+    public ResponseEntity customerAnswerCredit(@RequestBody CsrCustomerCreditAnswerDto csrCustomerCreditAnswerDto){
         var result = csrCustomerCreditService.customerAnswerCredit(csrCustomerCreditAnswerDto);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
+    @GetMapping("/credit-result/{identityNumber}/{dateOfBirth}")
+    public ResponseEntity getCustomerCreditsResults(@PathVariable String identityNumber,@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateOfBirth){
+        var result =  csrCustomerCreditService.findCustomerCreditsResults(identityNumber,dateOfBirth);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
+    @GetMapping("/credit-result-approved/{identityNumber}/{dateOfBirth}")
+    public ResponseEntity getCustomerCreditsResultBySystemApproved(@PathVariable String identityNumber,@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")Date dateOfBirth){
+        var result =  csrCustomerCreditService.findCustomerCreditsResultBySystemApproved(identityNumber,dateOfBirth);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 @Service
-public class MernisServiceAdapter implements CustomerCheckService{
+public class MernisServiceImpl implements CustomerCheckService{
     @Override
     public boolean CheckIfRealCustomer(CsrCustomer csrCustomer) {
         KPSPublic service=new KPSPublic();

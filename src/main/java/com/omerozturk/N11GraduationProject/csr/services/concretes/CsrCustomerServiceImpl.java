@@ -31,14 +31,16 @@ public class CsrCustomerServiceImpl implements CsrCustomerService {
     @Override
     public DataResult<List<CsrCustomerDto>> findAll() {
         List<CsrCustomer> csrCustomerList = csrCustomerEntityService.findAll();
-        List<CsrCustomerDto> csrCustomerDtoList = CsrCustomerMapper.INSTANCE.convertCsrCustomerListToCsrCustomerDtoList(csrCustomerList);
+        List<CsrCustomerDto> csrCustomerDtoList = CsrCustomerMapper
+                .INSTANCE.convertCsrCustomerListToCsrCustomerDtoList(csrCustomerList);
         return new SuccessDataResult<List<CsrCustomerDto>>(csrCustomerDtoList,"Veriler Listelendi");
     }
 
     @Override
     public DataResult<CsrCustomerDto> findById(Long id) {
         CsrCustomer csrCustomer =getCsrCustomer(id);
-        CsrCustomerDto csrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
+        CsrCustomerDto csrCustomerDto = CsrCustomerMapper
+                .INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
         return new SuccessDataResult<CsrCustomerDto>(csrCustomerDto,"Müşteri Getirildi");
     }
 
@@ -48,20 +50,23 @@ public class CsrCustomerServiceImpl implements CsrCustomerService {
         if (csrCustomer == null){
             throw new CsrCustomerNotFoundException("Müşteri Bulunanamdı!");
         }
-        CsrCustomerDto csrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
+        CsrCustomerDto csrCustomerDto = CsrCustomerMapper
+                .INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
         return new SuccessDataResult<CsrCustomerDto>(csrCustomerDto,"Müşteri Getirildi");
     }
 
     @Override
     public DataResult<CsrCustomerDto> save(CsrCustomerSaveRequestDto csrCustomerSaveRequestDto) {
-        CsrCustomer csrCustomer = CsrCustomerMapper.INSTANCE.convertCsrCustomerSaveRequestDtoToCsrCustomer(csrCustomerSaveRequestDto);
+        CsrCustomer csrCustomer = CsrCustomerMapper
+                .INSTANCE.convertCsrCustomerSaveRequestDtoToCsrCustomer(csrCustomerSaveRequestDto);
         csrCustomer= csrCustomerControl(csrCustomer);
         csrCustomer.setPhoneNumber(csrCustomerSaveRequestDto.getPhoneNumber());
         csrCustomer.setSalary(csrCustomerSaveRequestDto.getSalary());
         csrCustomer.setOperationDate(new Date());
         csrCustomer.setStatus(EnumStatus.ACTIVE);
         csrCustomer = csrCustomerEntityService.save(csrCustomer);
-        CsrCustomerDto newCsrCustomerDto = CsrCustomerMapper.INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
+        CsrCustomerDto newCsrCustomerDto = CsrCustomerMapper
+                .INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
         return new SuccessDataResult<>(newCsrCustomerDto,"İşlem Başarılı");
     }
 
@@ -82,13 +87,13 @@ public class CsrCustomerServiceImpl implements CsrCustomerService {
         return csrCustomer;
     }
     private CsrCustomer csrCustomerControl(CsrCustomer csrCustomer){
-        CsrCustomer responseCsrCustomer= csrCustomerEntityService.findByIdentityNumber(csrCustomer.getIdentityNumber());
-        if(responseCsrCustomer!=null && responseCsrCustomer.getStatus() == EnumStatus.ACTIVE){
-            return responseCsrCustomer;
-        }
         boolean checkIfRealCustomer = customerCheckService.CheckIfRealCustomer(csrCustomer);
         if (!checkIfRealCustomer){
             throw new CsrCustomerNotCheckRealCustomerException("Müşteri Bilgileri Hatalı");
+        }
+        CsrCustomer responseCsrCustomer= csrCustomerEntityService.findByIdentityNumber(csrCustomer.getIdentityNumber());
+        if(responseCsrCustomer!=null && responseCsrCustomer.getStatus() == EnumStatus.ACTIVE){
+            return responseCsrCustomer;
         }
         return null;
     }

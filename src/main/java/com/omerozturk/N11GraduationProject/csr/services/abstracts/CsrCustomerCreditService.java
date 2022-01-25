@@ -6,6 +6,7 @@ import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditSa
 import com.omerozturk.N11GraduationProject.gen.utilities.result.DataResult;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.Result;
 
+import java.util.Date;
 import java.util.List;
 
 public interface CsrCustomerCreditService {
@@ -16,5 +17,7 @@ public interface CsrCustomerCreditService {
     DataResult<List<CsrCustomerCreditDto>> findByCreditId(Long creditId);
     DataResult<CsrCustomerCreditDto> applyForCredit(CsrCustomerCreditSaveRequestDto csrCustomerCreditSaveRequestDto);
     DataResult<CsrCustomerCreditDto> customerAnswerCredit(CsrCustomerCreditAnswerDto csrCustomerCreditAnswerDto);
-     Result delete(Long id);
+    Result delete(Long id);
+    DataResult<List<CsrCustomerCreditDto>> findCustomerCreditsResults(String identityNumber, Date dateOfBirth);
+    DataResult<CsrCustomerCreditDto> findCustomerCreditsResultBySystemApproved(String identityNumber, Date dateOfBirth);
 }

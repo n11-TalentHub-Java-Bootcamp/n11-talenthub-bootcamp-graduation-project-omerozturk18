@@ -28,16 +28,16 @@ public class CrdCreditServiceImpl implements CrdCreditService {
     @Override
     public DataResult<List<CrdCreditDto>> findAll() {
         List<CrdCredit> crdCreditList = crdCreditEntityService.findAll();
-        List<CrdCreditDto> crdCreditDtoList =
-                CrdCreditMapper.INSTANCE.convertCrdCreditListToCrdCreditDtoList(crdCreditList);
+        List<CrdCreditDto> crdCreditDtoList = CrdCreditMapper
+                .INSTANCE.convertCrdCreditListToCrdCreditDtoList(crdCreditList);
         return new SuccessDataResult<List<CrdCreditDto>>(crdCreditDtoList,"Krediler Listelendi");
     }
 
     @Override
     public DataResult<CrdCreditDto> findById(Long id) {
         CrdCredit crdCustomer = getCrdCredit(id);
-        CrdCreditDto crdCreditDto =
-                CrdCreditMapper.INSTANCE.convertCrdCreditToCrdCreditDto(crdCustomer);
+        CrdCreditDto crdCreditDto = CrdCreditMapper
+                .INSTANCE.convertCrdCreditToCrdCreditDto(crdCustomer);
         return new SuccessDataResult<CrdCreditDto>(crdCreditDto,"Kredi Getirildi");
     }
 
@@ -47,19 +47,20 @@ public class CrdCreditServiceImpl implements CrdCreditService {
         if (crdCredit == null || crdCredit.getStatus() != EnumStatus.ACTIVE){
             throw new CrdCreditNotFoundException("Kredi Bulunanamdı!");
         }
-        CrdCreditDto crdCreditDto = CrdCreditMapper.INSTANCE.convertCrdCreditToCrdCreditDto(crdCredit);
+        CrdCreditDto crdCreditDto = CrdCreditMapper
+                .INSTANCE.convertCrdCreditToCrdCreditDto(crdCredit);
         return new SuccessDataResult<CrdCreditDto>(crdCreditDto,"Krediler Getirildi");
     }
 
     @Override
     public DataResult<CrdCreditDto> save(CrdCreditSaveRequestDto crdCreditSaveRequestDto) {
-        CrdCredit crdCredit =
-                CrdCreditMapper.INSTANCE.convertCrdCreditSaveRequestDtoToCrdCredit(crdCreditSaveRequestDto);
+        CrdCredit crdCredit = CrdCreditMapper
+                .INSTANCE.convertCrdCreditSaveRequestDtoToCrdCredit(crdCreditSaveRequestDto);
         crdCredit.setOperationDate(new Date());
         crdCredit.setStatus(EnumStatus.ACTIVE);
         crdCredit = crdCreditEntityService.save(crdCredit);
-        CrdCreditDto crdCreditDto =
-                CrdCreditMapper.INSTANCE.convertCrdCreditToCrdCreditDto(crdCredit);
+        CrdCreditDto crdCreditDto = CrdCreditMapper
+                .INSTANCE.convertCrdCreditToCrdCreditDto(crdCredit);
         return new SuccessDataResult<CrdCreditDto>(crdCreditDto,"Kredi Eklendi");
     }
 

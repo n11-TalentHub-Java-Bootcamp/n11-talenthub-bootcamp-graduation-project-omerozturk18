@@ -97,7 +97,7 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
         if(customerHaveSystemApprovedCredit !=null){
             CsrCustomerCreditDto csrCustomerCreditDto = CsrCustomerCreditMapper
                 .INSTANCE.convertCsrCustomerCreditToCsrCustomerCreditDto(customerHaveSystemApprovedCredit);
-            return new ErrorDataResult<>(csrCustomerCreditDto,"Zaten Onay Bekleyen Bir Krediniz Var");
+            return new SuccessDataResult<>(csrCustomerCreditDto,"Zaten Onay Bekleyen Bir Krediniz Var");
         }
         creditIsThere(csrCustomerCredit.getCrdCreditId());
 
@@ -122,7 +122,10 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
         csrCustomerCreditEntityService.save(csrCustomerCredit);
         CsrCustomerCreditDto csrCustomerCreditDto = CsrCustomerCreditMapper
                 .INSTANCE.convertCsrCustomerCreditToCsrCustomerCreditDto(csrCustomerCredit);
-        return new SuccessDataResult<>(csrCustomerCreditDto,"Kredinizi Onayladınız, Krediniz Hesabınıza Yatırılacaktır.");
+       DataResult result= csrCustomerCreditDto.getCreditResult()==EnumCreditResult.CUSTOMER_APPROVED?
+                new SuccessDataResult<>(csrCustomerCreditDto,"Kredinizi Onayladınız, Krediniz Hesabınıza Yatırılacaktır."):
+                new ErrorDataResult(csrCustomerCreditDto,"Krediyi Reddettiniz, Krediden Yararlanamayacaksınız.");
+       return result;
     }
 
     @Override
@@ -134,13 +137,42 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
         return new SuccessResult(" Kredi Silindi");
     }
 
+    @Override
+    public DataResult<List<CsrCustomerCreditDto>> findCustomerCreditsResults(String identityNumber, Date dateOfBirth) {
+        DataResult customerControlResult = customerControlByIdentityNumberAndDateOfBrith(identityNumber, dateOfBirth);
+        if(!customerControlResult.isSuccess()){
+            return new ErrorDataResult<>(customerControlResult.getMessage());
+        }
+        List<CsrCustomerCredit> customerCreditList = csrCustomerCreditEntityService.findByCustomerIdentityNumber(identityNumber);
+        if(customerCreditList.isEmpty()){
+            return new ErrorDataResult<>("Size Ait Bir Kredi Bulunamadı!");
+        }
+        List<CsrCustomerCreditDto> csrCustomerCreditDtoList = CsrCustomerCreditMapper.INSTANCE.convertCsrCustomerCreditListToCsrCustomerCreditDtoList(customerCreditList);
+        return new SuccessDataResult<>(csrCustomerCreditDtoList,"Kredi Sonuçlarınız Listeleniyor");
+    }
+
+    @Override
+    public DataResult<CsrCustomerCreditDto> findCustomerCreditsResultBySystemApproved(String identityNumber, Date dateOfBirth) {
+        DataResult customerControlResult = customerControlByIdentityNumberAndDateOfBrith(identityNumber, dateOfBirth);
+        if(!customerControlResult.isSuccess()){
+            return new ErrorDataResult<>(customerControlResult.getMessage());
+        }
+        CsrCustomerCredit customerCredit = csrCustomerCreditEntityService.findByCustomerIdentityNumberAndSystemApproved(identityNumber);
+        if(customerCredit == null){
+            return new ErrorDataResult<>("Size Ait Onay Bekleyen Bir Kredi Bulunamadı!");
+        }
+        CsrCustomerCreditDto csrCustomerCreditDto = CsrCustomerCreditMapper
+                .INSTANCE.convertCsrCustomerCreditToCsrCustomerCreditDto(customerCredit);
+        return new SuccessDataResult<>(csrCustomerCreditDto,"Kredi Sonucu Getirildi");
+    }
+
     private  DataResult<CsrCustomerCreditDto> saveCustomerCredit(CsrCustomerCredit csrCustomerCredit,String phoneNNumber){
         csrCustomerCredit.setStatus(EnumStatus.ACTIVE);
         csrCustomerCredit.setOperationDate(new Date());
         csrCustomerCredit = csrCustomerCreditEntityService.save(csrCustomerCredit);
         sendSms(csrCustomerCredit,phoneNNumber);
         CsrCustomerCreditDto csrCustomerCreditDto = CsrCustomerCreditMapper.INSTANCE.convertCsrCustomerCreditToCsrCustomerCreditDto(csrCustomerCredit);
-        return new SuccessDataResult<>(csrCustomerCreditDto,"Kredi Eklendi");
+        return new SuccessDataResult<>(csrCustomerCreditDto,"Kredi İsteğiniz Alındı");
     }
     private CsrCustomerCredit getCsrCustomerCredit(Long id){
         CsrCustomerCredit csrCustomerCredit = csrCustomerCreditEntityService.findById(id);
@@ -152,6 +184,16 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
 
     private CsrCustomerCredit customerHaveSystemApprovedCredit(Long csrCustomerId) {
         return csrCustomerCreditEntityService.findHaveSystemApprovedCreditByCustomerId(csrCustomerId);
+    }
+    private DataResult customerControlByIdentityNumberAndDateOfBrith(String identityNumber, Date dateOfBirth) {
+        if (identityNumber.isEmpty() || dateOfBirth==null){
+            return new ErrorDataResult<>("Kimlik Numarası ve Doğum Tarihi Boş Geçilemez!");
+        }
+        DataResult<CsrCustomerDto> customerDtoDataResult = csrCustomerService.findByIdentityNumber(identityNumber);
+        if(customerDtoDataResult.getData().getDateOfBirth().getTime() != dateOfBirth.getTime()){
+            return new ErrorDataResult<>("Veriler Hatalı, Lütfen Bilgilerinizi Kontrol Ediniz!");
+        }
+        return new SuccessDataResult();
     }
     private CsrCustomer customerIsThere(Long csrCustomerId) {
         DataResult<CsrCustomerDto> csrCustomerDto = csrCustomerService.findById(csrCustomerId);
@@ -213,7 +255,7 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
     private void sendSms(CsrCustomerCredit csrCustomerCredit, String phoneNumber) {
         CntMessageSendRequestDto cntMessageSendRequestDto=new CntMessageSendRequestDto();
         cntMessageSendRequestDto.setTitle("Kredi Onayı");
-        cntMessageSendRequestDto.setContents("Krediniz Onaylandı. Kredinizi Kabul Etmek İçin Linke Basınız");
+        cntMessageSendRequestDto.setContents("N11 Bootcamp: Krediniz Onaylandı. Kredinizi Kabul Etmek İçin Linke Basınız: https://bit.ly/3u0rdIG");
         cntMessageSendRequestDto.setCsrCustomerId(csrCustomerCredit.getCsrCustomerId());
         cntMessageService.sendMessage(cntMessageSendRequestDto);
     }
