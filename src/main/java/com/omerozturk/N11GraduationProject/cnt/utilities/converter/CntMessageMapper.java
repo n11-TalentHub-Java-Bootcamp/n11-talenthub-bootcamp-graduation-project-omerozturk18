@@ -21,6 +21,7 @@ public interface CntMessageMapper {
     List<CntMessage> convertCntMessageDtoListToCntMessageList(List<CntMessageDto> cntSmsDtoList);
 
     CntMessage convertCntMessageSendRequestDtoToCntMessage(CntMessageSendRequestDto cntMessageSendRequestDto);
+    CntMessageDto convertCntMessageSendRequestDtoToCntMessageDto(CntMessageSendRequestDto cntMessageSendRequestDto);
     List<CntMessage> convertCntMessageSendRequestDtoListToCntMessageList(List<CntMessageSendRequestDto> cntMessageSendRequestDtoList);
 
 }

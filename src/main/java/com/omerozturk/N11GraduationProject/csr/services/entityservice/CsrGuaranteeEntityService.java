@@ -1,6 +1,6 @@
 package com.omerozturk.N11GraduationProject.csr.services.entityservice;
 
-import com.omerozturk.N11GraduationProject.csr.dataAccess.abstracts.CsrGuaranteeDao;
+import com.omerozturk.N11GraduationProject.csr.repositories.abstracts.CsrGuaranteeDao;
 import com.omerozturk.N11GraduationProject.csr.entities.concretes.CsrGuarantee;
 import com.omerozturk.N11GraduationProject.gen.utilities.service.BaseEntityService;
 import org.springframework.stereotype.Service;

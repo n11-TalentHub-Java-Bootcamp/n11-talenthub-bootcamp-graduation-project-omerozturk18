@@ -23,6 +23,7 @@ public interface CrdCreditMapper {
     List<CrdCredit> convertCrdCreditDtoListToCrdCreditList(List<CrdCreditDto> crdCreditDtoList);
 
     CrdCredit convertCrdCreditSaveRequestDtoToCrdCredit(CrdCreditSaveRequestDto crdCreditSaveRequestDto);
+    CrdCreditDto convertCrdCreditSaveRequestDtoToCrdCreditDto(CrdCreditSaveRequestDto crdCreditSaveRequestDto);
     List<CrdCredit> convertCrdCreditSaveRequestDtoListToCrdCreditList(List<CrdCreditSaveRequestDto> crdCreditSaveRequestDtoList);
 
 }

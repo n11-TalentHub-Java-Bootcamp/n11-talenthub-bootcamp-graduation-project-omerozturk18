@@ -1,4 +1,4 @@
-package com.omerozturk.N11GraduationProject.crd.dataAccess.abstracts;
+package com.omerozturk.N11GraduationProject.crd.repositories.abstracts;
 
 
 import com.omerozturk.N11GraduationProject.crd.entities.concretes.CrdCredit;

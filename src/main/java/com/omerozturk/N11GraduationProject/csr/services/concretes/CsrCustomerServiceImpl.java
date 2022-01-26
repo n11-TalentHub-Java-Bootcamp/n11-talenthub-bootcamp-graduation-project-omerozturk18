@@ -87,7 +87,7 @@ public class CsrCustomerServiceImpl implements CsrCustomerService {
         return csrCustomer;
     }
     private CsrCustomer csrCustomerControl(CsrCustomer csrCustomer){
-        boolean checkIfRealCustomer = customerCheckService.CheckIfRealCustomer(csrCustomer);
+        boolean checkIfRealCustomer = customerCheckService.checkIfRealCustomer(csrCustomer);
         if (!checkIfRealCustomer){
             throw new CsrCustomerNotCheckRealCustomerException("Müşteri Bilgileri Hatalı");
         }
@@ -95,6 +95,6 @@ public class CsrCustomerServiceImpl implements CsrCustomerService {
         if(responseCsrCustomer!=null && responseCsrCustomer.getStatus() == EnumStatus.ACTIVE){
             return responseCsrCustomer;
         }
-        return null;
+        return csrCustomer;
     }
 }

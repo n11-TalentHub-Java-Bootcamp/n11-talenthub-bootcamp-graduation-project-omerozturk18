@@ -1,4 +1,4 @@
-package com.omerozturk.N11GraduationProject.csr.dataAccess.abstracts;
+package com.omerozturk.N11GraduationProject.csr.repositories.abstracts;
 
 
 import com.omerozturk.N11GraduationProject.csr.entities.concretes.CsrGuarantee;

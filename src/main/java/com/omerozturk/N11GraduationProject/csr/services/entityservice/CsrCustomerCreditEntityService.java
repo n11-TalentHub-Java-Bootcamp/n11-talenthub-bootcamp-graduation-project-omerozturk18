@@ -1,6 +1,6 @@
 package com.omerozturk.N11GraduationProject.csr.services.entityservice;
 
-import com.omerozturk.N11GraduationProject.csr.dataAccess.abstracts.CsrCustomerCreditDao;
+import com.omerozturk.N11GraduationProject.csr.repositories.abstracts.CsrCustomerCreditDao;
 import com.omerozturk.N11GraduationProject.csr.entities.concretes.CsrCustomerCredit;
 import com.omerozturk.N11GraduationProject.csr.entities.enums.EnumCreditResult;
 import com.omerozturk.N11GraduationProject.gen.utilities.enums.EnumStatus;

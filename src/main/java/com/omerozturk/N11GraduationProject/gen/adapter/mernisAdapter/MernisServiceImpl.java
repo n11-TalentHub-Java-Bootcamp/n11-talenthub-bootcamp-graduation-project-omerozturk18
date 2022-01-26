@@ -11,7 +11,7 @@ import java.time.ZoneId;
 @Service
 public class MernisServiceImpl implements CustomerCheckService{
     @Override
-    public boolean CheckIfRealCustomer(CsrCustomer csrCustomer) {
+    public boolean checkIfRealCustomer(CsrCustomer csrCustomer) {
         KPSPublic service=new KPSPublic();
        KPSPublicSoap soapService= service.getKPSPublicSoap();
 

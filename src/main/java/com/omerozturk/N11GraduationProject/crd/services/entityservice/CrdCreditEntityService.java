@@ -1,7 +1,7 @@
 package com.omerozturk.N11GraduationProject.crd.services.entityservice;
 
 
-import com.omerozturk.N11GraduationProject.crd.dataAccess.abstracts.CrdCreditDao;
+import com.omerozturk.N11GraduationProject.crd.repositories.abstracts.CrdCreditDao;
 import com.omerozturk.N11GraduationProject.crd.entities.concretes.CrdCredit;
 import com.omerozturk.N11GraduationProject.gen.utilities.service.BaseEntityService;
 import org.springframework.stereotype.Service;

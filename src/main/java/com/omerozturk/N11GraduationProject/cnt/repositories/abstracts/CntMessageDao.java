@@ -1,4 +1,4 @@
-package com.omerozturk.N11GraduationProject.cnt.dataAccess.abstracts;
+package com.omerozturk.N11GraduationProject.cnt.repositories.abstracts;
 
 
 import com.omerozturk.N11GraduationProject.cnt.entities.concretes.CntMessage;

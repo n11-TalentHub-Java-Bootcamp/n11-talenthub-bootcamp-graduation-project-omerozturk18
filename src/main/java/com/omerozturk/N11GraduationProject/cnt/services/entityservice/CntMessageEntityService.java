@@ -2,7 +2,7 @@ package com.omerozturk.N11GraduationProject.cnt.services.entityservice;
 
 
 import com.omerozturk.N11GraduationProject.gen.utilities.service.BaseEntityService;
-import com.omerozturk.N11GraduationProject.cnt.dataAccess.abstracts.CntMessageDao;
+import com.omerozturk.N11GraduationProject.cnt.repositories.abstracts.CntMessageDao;
 import com.omerozturk.N11GraduationProject.cnt.entities.concretes.CntMessage;
 import org.springframework.stereotype.Service;
 

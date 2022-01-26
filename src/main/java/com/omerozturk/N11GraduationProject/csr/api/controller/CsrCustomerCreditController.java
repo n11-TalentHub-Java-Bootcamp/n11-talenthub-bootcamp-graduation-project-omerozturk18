@@ -2,7 +2,7 @@ package com.omerozturk.N11GraduationProject.csr.api.controller;
 
 
 
-import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditAnswerDto;
+import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditResponseDto;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditSaveRequestDto;
 import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrCustomerCreditService;
 import lombok.RequiredArgsConstructor;
@@ -72,9 +72,9 @@ public class CsrCustomerCreditController {
         }
         return ResponseEntity.badRequest().body(result);
     }
-    @PostMapping("/answer")
-    public ResponseEntity customerAnswerCredit(@RequestBody CsrCustomerCreditAnswerDto csrCustomerCreditAnswerDto){
-        var result = csrCustomerCreditService.customerAnswerCredit(csrCustomerCreditAnswerDto);
+    @PostMapping("/response")
+    public ResponseEntity customerResponseCredit(@RequestBody CsrCustomerCreditResponseDto csrCustomerCreditResponseDto){
+        var result = csrCustomerCreditService.customerResponseCredit(csrCustomerCreditResponseDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }

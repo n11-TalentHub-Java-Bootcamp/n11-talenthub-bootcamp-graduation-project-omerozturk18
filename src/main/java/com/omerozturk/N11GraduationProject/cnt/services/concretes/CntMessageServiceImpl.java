@@ -64,8 +64,8 @@ public class CntMessageServiceImpl implements CntMessageService {
                 .INSTANCE.convertCntMessageSendRequestDtoToCntMessage(cntMessageSaveRequestDto);
         cntMessage.setOperationDate(new Date());
         DataResult<CsrCustomerDto> customerDtoDataResult = csrCustomerService.findById(cntMessage.getCsrCustomerId());
-        SmsRequest smsRequest=new SmsRequest(customerDtoDataResult.getData().getPhoneNumber(),cntMessage.getContents());
-        twilioService.sendSms(smsRequest);
+        //SmsRequest smsRequest=new SmsRequest(customerDtoDataResult.getData().getPhoneNumber(),cntMessage.getContents());
+        //twilioService.sendSms(smsRequest);
         cntMessage = cntMessageEntityService.save(cntMessage);
         CntMessageDto cntMessageDto = CntMessageMapper
                 .INSTANCE.convertCntMessageToCntMessageDto(cntMessage);

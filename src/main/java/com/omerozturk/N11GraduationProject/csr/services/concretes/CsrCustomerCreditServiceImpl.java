@@ -1,11 +1,12 @@
 package com.omerozturk.N11GraduationProject.csr.services.concretes;
 
+import com.omerozturk.N11GraduationProject.cnt.entities.dtos.CntMessageDto;
 import com.omerozturk.N11GraduationProject.cnt.entities.dtos.CntMessageSendRequestDto;
 import com.omerozturk.N11GraduationProject.cnt.services.abstracts.CntMessageService;
 import com.omerozturk.N11GraduationProject.crd.services.abstracts.CrdCreditService;
 import com.omerozturk.N11GraduationProject.csr.entities.concretes.CsrCustomer;
 import com.omerozturk.N11GraduationProject.csr.entities.concretes.CsrCustomerCredit;
-import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditAnswerDto;
+import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditResponseDto;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditDto;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerCreditSaveRequestDto;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerDto;
@@ -108,8 +109,8 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
 
     @Override
     @Transactional
-    public DataResult<CsrCustomerCreditDto> customerAnswerCredit(CsrCustomerCreditAnswerDto csrCustomerCreditAnswerDto) {
-        CsrCustomerCredit csrCustomerCredit = getCsrCustomerCredit(csrCustomerCreditAnswerDto.getId());
+    public DataResult<CsrCustomerCreditDto> customerResponseCredit(CsrCustomerCreditResponseDto csrCustomerCreditResponseDto) {
+        CsrCustomerCredit csrCustomerCredit = getCsrCustomerCredit(csrCustomerCreditResponseDto.getId());
         if(csrCustomerCredit.getCreditResult() == EnumCreditResult.SYSTEM_DENIED){
             return new ErrorDataResult<>("Krediniz Onaylanmamıştır.");
         }
@@ -118,7 +119,7 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
         }
 
         csrCustomerCredit.setOperationDate(new Date());
-        csrCustomerCredit.setCreditResult(csrCustomerCreditAnswerDto.getCreditResult());
+        csrCustomerCredit.setCreditResult(csrCustomerCreditResponseDto.getCreditResult());
         csrCustomerCreditEntityService.save(csrCustomerCredit);
         CsrCustomerCreditDto csrCustomerCreditDto = CsrCustomerCreditMapper
                 .INSTANCE.convertCsrCustomerCreditToCsrCustomerCreditDto(csrCustomerCredit);
@@ -170,7 +171,11 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
         csrCustomerCredit.setStatus(EnumStatus.ACTIVE);
         csrCustomerCredit.setOperationDate(new Date());
         csrCustomerCredit = csrCustomerCreditEntityService.save(csrCustomerCredit);
-        sendSms(csrCustomerCredit,phoneNNumber);
+
+        if(csrCustomerCredit.getCreditResult() == EnumCreditResult.SYSTEM_APPROVED){
+            sendSms(csrCustomerCredit,phoneNNumber);
+        }
+
         CsrCustomerCreditDto csrCustomerCreditDto = CsrCustomerCreditMapper.INSTANCE.convertCsrCustomerCreditToCsrCustomerCreditDto(csrCustomerCredit);
         return new SuccessDataResult<>(csrCustomerCreditDto,"Kredi İsteğiniz Alındı");
     }
@@ -252,11 +257,14 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
         }
         return csrCustomerCredit;
     }
-    private void sendSms(CsrCustomerCredit csrCustomerCredit, String phoneNumber) {
+    private  void sendSms(CsrCustomerCredit csrCustomerCredit, String phoneNumber) {
         CntMessageSendRequestDto cntMessageSendRequestDto=new CntMessageSendRequestDto();
         cntMessageSendRequestDto.setTitle("Kredi Onayı");
         cntMessageSendRequestDto.setContents("N11 Bootcamp: Krediniz Onaylandı. Kredinizi Kabul Etmek İçin Linke Basınız: https://bit.ly/3u0rdIG");
         cntMessageSendRequestDto.setCsrCustomerId(csrCustomerCredit.getCsrCustomerId());
-        cntMessageService.sendMessage(cntMessageSendRequestDto);
+        DataResult<CntMessageDto> cntMessageDtoDataResult = cntMessageService.sendMessage(cntMessageSendRequestDto);
+        if(!cntMessageDtoDataResult.isSuccess()){
+            throw new RuntimeException("Hata Oluştu Lütfen Dahas Sonra Tekrar Deneyiniz!");
+        }
     }
 }
