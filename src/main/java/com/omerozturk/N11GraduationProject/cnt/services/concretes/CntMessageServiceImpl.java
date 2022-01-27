@@ -17,6 +17,7 @@ import com.omerozturk.N11GraduationProject.cnt.services.entityservice.CntMessage
 import com.omerozturk.N11GraduationProject.cnt.utilities.converter.CntMessageMapper;
 import com.omerozturk.N11GraduationProject.cnt.utilities.exception.CntMessageNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -24,6 +25,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class CntMessageServiceImpl implements CntMessageService {
 
     private final CntMessageEntityService cntMessageEntityService;
@@ -64,18 +66,20 @@ public class CntMessageServiceImpl implements CntMessageService {
                 .INSTANCE.convertCntMessageSendRequestDtoToCntMessage(cntMessageSaveRequestDto);
         cntMessage.setOperationDate(new Date());
         DataResult<CsrCustomerDto> customerDtoDataResult = csrCustomerService.findById(cntMessage.getCsrCustomerId());
-        //SmsRequest smsRequest=new SmsRequest(customerDtoDataResult.getData().getPhoneNumber(),cntMessage.getContents());
-        //twilioService.sendSms(smsRequest);
+        SmsRequest smsRequest=new SmsRequest(customerDtoDataResult.getData().getPhoneNumber(),cntMessage.getContents());
+        twilioService.sendSms(smsRequest);
         cntMessage = cntMessageEntityService.save(cntMessage);
+        log.info("Save sms {}", cntMessage);
         CntMessageDto cntMessageDto = CntMessageMapper
                 .INSTANCE.convertCntMessageToCntMessageDto(cntMessage);
-        return new SuccessDataResult<CntMessageDto>(cntMessageDto,"Sms Eklendi");
+        return new SuccessDataResult<CntMessageDto>(cntMessageDto,"Sms Gönderildi");
     }
 
     @Override
     public Result delete(Long id) {
         CntMessage cntMessage = getCntMessage(id);
         cntMessageEntityService.delete(cntMessage);
+        log.info("Deleted sms {}", cntMessage);
         return new SuccessResult(" Sms Silindi");
     }
 

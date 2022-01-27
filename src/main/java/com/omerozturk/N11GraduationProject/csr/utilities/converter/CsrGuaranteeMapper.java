@@ -6,9 +6,11 @@ import com.omerozturk.N11GraduationProject.csr.entities.concretes.CsrGuarantee;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrGuaranteeDto;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrGuaranteeSaveRequestDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)

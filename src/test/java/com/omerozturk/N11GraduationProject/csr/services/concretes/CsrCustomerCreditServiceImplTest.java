@@ -246,7 +246,7 @@ class CsrCustomerCreditServiceImplTest {
 
         when(csrCustomerCreditEntityService.save(ArgumentMatchers.any(CsrCustomerCredit.class))).thenReturn(csrCustomerCreditSaved);
 
-        DataResult<CsrCustomerCreditDto> result = csrCustomerCreditService.customerResponseCredit(csrCustomerCreditResponseDto);
+        DataResult<CsrCustomerCreditDto> result = csrCustomerCreditService.customerCreditResponse(csrCustomerCreditResponseDto);
 
         assertEquals(new SuccessDataResult<>().getClass(),result.getClass() );
         assertEquals(new SuccessDataResult<>("Kredinizi Onayladınız, Krediniz Hesabınıza Yatırılacaktır.").getMessage(),result.getMessage() );
@@ -265,7 +265,7 @@ class CsrCustomerCreditServiceImplTest {
 
         when(csrCustomerCreditEntityService.save(ArgumentMatchers.any(CsrCustomerCredit.class))).thenReturn(csrCustomerCreditSaved);
 
-        DataResult<CsrCustomerCreditDto> result = csrCustomerCreditService.customerResponseCredit(csrCustomerCreditResponseDto);
+        DataResult<CsrCustomerCreditDto> result = csrCustomerCreditService.customerCreditResponse(csrCustomerCreditResponseDto);
 
         assertEquals(new ErrorDataResult<>().getClass(),result.getClass() );
         assertEquals(new ErrorDataResult<>("Krediyi Reddettiniz, Krediden Yararlanamayacaksınız.").getMessage(),result.getMessage() );
@@ -279,7 +279,7 @@ class CsrCustomerCreditServiceImplTest {
         csrCustomerCredit.setCreditResult(EnumCreditResult.SYSTEM_DENIED);
         when(csrCustomerCreditEntityService.findById(1L)).thenReturn(csrCustomerCredit);
 
-        DataResult<CsrCustomerCreditDto> result = csrCustomerCreditService.customerResponseCredit(csrCustomerCreditResponseDto);
+        DataResult<CsrCustomerCreditDto> result = csrCustomerCreditService.customerCreditResponse(csrCustomerCreditResponseDto);
 
         assertEquals(new ErrorDataResult<>().getClass(),result.getClass() );
         assertEquals(new ErrorDataResult<>("Krediniz Onaylanmamıştır.").getMessage(),result.getMessage() );
@@ -292,7 +292,7 @@ class CsrCustomerCreditServiceImplTest {
         csrCustomerCredit.setCreditResult(EnumCreditResult.CUSTOMER_APPROVED);
         when(csrCustomerCreditEntityService.findById(1L)).thenReturn(csrCustomerCredit);
 
-        DataResult<CsrCustomerCreditDto> result = csrCustomerCreditService.customerResponseCredit(csrCustomerCreditResponseDto);
+        DataResult<CsrCustomerCreditDto> result = csrCustomerCreditService.customerCreditResponse(csrCustomerCreditResponseDto);
 
         assertEquals(new ErrorDataResult<>().getClass(),result.getClass() );
         assertEquals(new ErrorDataResult<>("Bu Krediyi Zaten Cevapladınız.").getMessage(),result.getMessage() );

@@ -13,6 +13,7 @@ import com.omerozturk.N11GraduationProject.gen.utilities.result.Result;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessDataResult;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessResult;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 
@@ -21,6 +22,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class CrdCreditServiceImpl implements CrdCreditService {
 
     private final CrdCreditEntityService crdCreditEntityService;
@@ -59,6 +61,7 @@ public class CrdCreditServiceImpl implements CrdCreditService {
         crdCredit.setOperationDate(new Date());
         crdCredit.setStatus(EnumStatus.ACTIVE);
         crdCredit = crdCreditEntityService.save(crdCredit);
+        log.info("Saved Credit {}", crdCredit);
         CrdCreditDto crdCreditDto = CrdCreditMapper
                 .INSTANCE.convertCrdCreditToCrdCreditDto(crdCredit);
         return new SuccessDataResult<CrdCreditDto>(crdCreditDto,"Kredi Eklendi");
@@ -69,7 +72,8 @@ public class CrdCreditServiceImpl implements CrdCreditService {
         CrdCredit crdCredit = getCrdCredit(id);
         crdCredit.setOperationDate(new Date());
         crdCredit.setStatus(EnumStatus.DELETED);
-        crdCreditEntityService.save(crdCredit);
+        crdCredit = crdCreditEntityService.save(crdCredit);
+        log.info("Deleted Credit {}", crdCredit);
         return new SuccessResult(" Kredi Silindi");
     }
 

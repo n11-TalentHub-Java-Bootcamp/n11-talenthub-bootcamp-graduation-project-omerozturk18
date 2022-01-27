@@ -14,5 +14,6 @@ public interface CsrGuaranteeService {
     DataResult<List<CsrGuaranteeDto>> findByCustomerId(Long customerId);
     BigDecimal findByCustomerTotalGuarantee(Long customerId);
     DataResult<CsrGuaranteeDto> save(CsrGuaranteeSaveRequestDto csrGuaranteeSaveRequestDto);
+    DataResult<List<CsrGuaranteeDto>> saveAll(List<CsrGuaranteeSaveRequestDto> csrGuaranteeSaveRequestDtoList);
     Result delete(Long id);
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Log4j2
 public class TwilioServiceImpl implements TwilioService{
+
     private final TwilioConfiguration twilioConfiguration;
 
     @Override

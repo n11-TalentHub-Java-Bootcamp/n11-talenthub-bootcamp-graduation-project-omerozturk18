@@ -14,14 +14,18 @@ import com.omerozturk.N11GraduationProject.gen.utilities.result.Result;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessDataResult;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessResult;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class CsrGuaranteeServiceImpl implements CsrGuaranteeService {
 
     private final CsrGuaranteeEntityService csrGuaranteeEntityService;
@@ -32,7 +36,7 @@ public class CsrGuaranteeServiceImpl implements CsrGuaranteeService {
         List<CsrGuarantee> csrGuaranteeList = csrGuaranteeEntityService.findAll();
         List<CsrGuaranteeDto> csrGuaranteeDtoList = CsrGuaranteeMapper
                 .INSTANCE.convertCsrGuaranteeListToCsrGuaranteeDtoList(csrGuaranteeList);
-        return new SuccessDataResult<List<CsrGuaranteeDto>>(csrGuaranteeDtoList,"Teminatlar Listelendi");
+        return new SuccessDataResult<>(csrGuaranteeDtoList,"Teminatlar Listelendi");
     }
 
     @Override
@@ -40,7 +44,7 @@ public class CsrGuaranteeServiceImpl implements CsrGuaranteeService {
         CsrGuarantee csrCustomer = getCsrGuarantee(id);
         CsrGuaranteeDto customerGuaranteeDto = CsrGuaranteeMapper
                 .INSTANCE.convertCsrGuaranteeToCsrGuaranteeDto(csrCustomer);
-        return new SuccessDataResult<CsrGuaranteeDto>(customerGuaranteeDto,"Teminat Getirildi");
+        return new SuccessDataResult<>(customerGuaranteeDto,"Teminat Getirildi");
     }
 
     @Override
@@ -52,7 +56,7 @@ public class CsrGuaranteeServiceImpl implements CsrGuaranteeService {
         }
         List<CsrGuaranteeDto> customerGuaranteeDtoList = CsrGuaranteeMapper
                 .INSTANCE.convertCsrGuaranteeListToCsrGuaranteeDtoList(csrGuaranteeList);
-        return new SuccessDataResult<List<CsrGuaranteeDto>>(customerGuaranteeDtoList,"Kullanıcının Teminatları Getirildi");
+        return new SuccessDataResult<>(customerGuaranteeDtoList,"Kullanıcının Teminatları Getirildi");
     }
 
     @Override
@@ -67,15 +71,30 @@ public class CsrGuaranteeServiceImpl implements CsrGuaranteeService {
                 CsrGuaranteeMapper.INSTANCE.convertCsrGuaranteeSaveRequestDtoToCsrGuarantee(csrGuaranteeSaveRequestDto);
         csrGuarantee.setOperationDate(new Date());
         csrGuarantee = csrGuaranteeEntityService.save(csrGuarantee);
+        log.info("Customer Guarantee Saved {}", csrGuarantee);
         CsrGuaranteeDto csrGuaranteeDto = CsrGuaranteeMapper
                 .INSTANCE.convertCsrGuaranteeToCsrGuaranteeDto(csrGuarantee);
-        return new SuccessDataResult<CsrGuaranteeDto>(csrGuaranteeDto,"Teminat Eklendi");
+        return new SuccessDataResult<>(csrGuaranteeDto,"Teminat Eklendi");
+    }
+
+    @Override
+    public DataResult<List<CsrGuaranteeDto>> saveAll(List<CsrGuaranteeSaveRequestDto> csrGuaranteeSaveRequestDtoList) {
+        List<CsrGuarantee> csrGuaranteeList =
+                CsrGuaranteeMapper.INSTANCE.convertCsrGuaranteeSaveRequestDtoListToCsrGuaranteeList(csrGuaranteeSaveRequestDtoList);
+        csrGuaranteeList.replaceAll(g->{g.setOperationDate(new Date()); return g;});
+
+        csrGuaranteeList = csrGuaranteeEntityService.saveAllCsrGuaranteeList(csrGuaranteeList);
+        log.info("Customer Guarantee List Saved {}", csrGuaranteeList);
+        List<CsrGuaranteeDto> csrGuaranteeDtoList = CsrGuaranteeMapper
+                .INSTANCE.convertCsrGuaranteeListToCsrGuaranteeDtoList(csrGuaranteeList);
+        return new SuccessDataResult<>(csrGuaranteeDtoList,"Teminat Eklendi");
     }
 
     @Override
     public Result delete(Long id) {
         CsrGuarantee csrGuarantee = getCsrGuarantee(id);
         csrGuaranteeEntityService.delete(csrGuarantee);
+        log.info("Customer Guarantee Deleted {}", csrGuarantee);
         return new SuccessResult(" Teminat Silindi");
     }
 

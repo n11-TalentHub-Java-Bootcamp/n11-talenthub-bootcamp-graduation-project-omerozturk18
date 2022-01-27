@@ -15,6 +15,7 @@ import com.omerozturk.N11GraduationProject.gen.utilities.result.Result;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessDataResult;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.SuccessResult;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -23,6 +24,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class CsrCustomerServiceImpl implements CsrCustomerService {
 
     private final CsrCustomerEntityService csrCustomerEntityService;
@@ -65,6 +67,7 @@ public class CsrCustomerServiceImpl implements CsrCustomerService {
         csrCustomer.setOperationDate(new Date());
         csrCustomer.setStatus(EnumStatus.ACTIVE);
         csrCustomer = csrCustomerEntityService.save(csrCustomer);
+        log.info("Customer Saved {}", csrCustomer);
         CsrCustomerDto newCsrCustomerDto = CsrCustomerMapper
                 .INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
         return new SuccessDataResult<>(newCsrCustomerDto,"İşlem Başarılı");
@@ -76,6 +79,7 @@ public class CsrCustomerServiceImpl implements CsrCustomerService {
         csrCustomer.setOperationDate(new Date());
         csrCustomer.setStatus(EnumStatus.DELETED);
         csrCustomerEntityService.save(csrCustomer);
+        log.info("Customer Deleted {}", csrCustomer);
         return new SuccessResult(" Müşteri Silindi");
     }
 

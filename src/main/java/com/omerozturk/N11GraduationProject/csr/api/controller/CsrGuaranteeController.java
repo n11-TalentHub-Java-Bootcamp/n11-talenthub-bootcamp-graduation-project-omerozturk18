@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/guarantees")
 @CrossOrigin
@@ -45,6 +47,15 @@ public class CsrGuaranteeController {
     @PostMapping
     public ResponseEntity create(@RequestBody CsrGuaranteeSaveRequestDto csrGuaranteeSaveRequestDto){
         var result = csrGuaranteeService.save(csrGuaranteeSaveRequestDto);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
+
+    @PostMapping("/all")
+    public ResponseEntity saveAll(@RequestBody List<CsrGuaranteeSaveRequestDto> csrGuaranteeSaveRequestDtoList){
+        var result = csrGuaranteeService.saveAll(csrGuaranteeSaveRequestDtoList);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }

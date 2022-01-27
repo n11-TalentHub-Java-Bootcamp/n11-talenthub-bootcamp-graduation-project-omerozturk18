@@ -23,5 +23,9 @@ public class CsrGuaranteeEntityService extends BaseEntityService<CsrGuarantee, C
         }
         return customerTotalGuarantee;
     }
+    public List<CsrGuarantee> saveAllCsrGuaranteeList(List<CsrGuarantee> list){
+        List<CsrGuarantee> csrGuaranteeList = getDao().saveAll(list);
+        return csrGuaranteeList;
+    }
 
 }

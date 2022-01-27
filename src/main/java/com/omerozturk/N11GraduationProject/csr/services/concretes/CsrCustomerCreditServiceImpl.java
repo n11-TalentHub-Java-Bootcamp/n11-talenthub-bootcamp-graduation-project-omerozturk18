@@ -22,6 +22,7 @@ import com.omerozturk.N11GraduationProject.gen.adapter.creditScoreAdapter.Custom
 import com.omerozturk.N11GraduationProject.gen.utilities.enums.EnumStatus;
 import com.omerozturk.N11GraduationProject.gen.utilities.result.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
 
     private final CsrCustomerCreditEntityService csrCustomerCreditEntityService;
@@ -109,7 +111,7 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
 
     @Override
     @Transactional
-    public DataResult<CsrCustomerCreditDto> customerResponseCredit(CsrCustomerCreditResponseDto csrCustomerCreditResponseDto) {
+    public DataResult<CsrCustomerCreditDto> customerCreditResponse(CsrCustomerCreditResponseDto csrCustomerCreditResponseDto) {
         CsrCustomerCredit csrCustomerCredit = getCsrCustomerCredit(csrCustomerCreditResponseDto.getId());
         if(csrCustomerCredit.getCreditResult() == EnumCreditResult.SYSTEM_DENIED){
             return new ErrorDataResult<>("Krediniz Onaylanmamıştır.");
@@ -121,6 +123,7 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
         csrCustomerCredit.setOperationDate(new Date());
         csrCustomerCredit.setCreditResult(csrCustomerCreditResponseDto.getCreditResult());
         csrCustomerCreditEntityService.save(csrCustomerCredit);
+        log.info("Customer Response Credit {}", csrCustomerCredit);
         CsrCustomerCreditDto csrCustomerCreditDto = CsrCustomerCreditMapper
                 .INSTANCE.convertCsrCustomerCreditToCsrCustomerCreditDto(csrCustomerCredit);
        DataResult result= csrCustomerCreditDto.getCreditResult()==EnumCreditResult.CUSTOMER_APPROVED?
@@ -135,6 +138,7 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
         csrCustomerCredit.setOperationDate(new Date());
         csrCustomerCredit.setStatus(EnumStatus.DELETED);
         csrCustomerCreditEntityService.save(csrCustomerCredit);
+        log.info("Deleted Customer Credit {}", csrCustomerCredit);
         return new SuccessResult(" Kredi Silindi");
     }
 
@@ -175,7 +179,7 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
         if(csrCustomerCredit.getCreditResult() == EnumCreditResult.SYSTEM_APPROVED){
             sendSms(csrCustomerCredit,phoneNNumber);
         }
-
+        log.info("Customer Credit Apply And Saved {}", csrCustomerCredit);
         CsrCustomerCreditDto csrCustomerCreditDto = CsrCustomerCreditMapper.INSTANCE.convertCsrCustomerCreditToCsrCustomerCreditDto(csrCustomerCredit);
         return new SuccessDataResult<>(csrCustomerCreditDto,"Kredi İsteğiniz Alındı");
     }

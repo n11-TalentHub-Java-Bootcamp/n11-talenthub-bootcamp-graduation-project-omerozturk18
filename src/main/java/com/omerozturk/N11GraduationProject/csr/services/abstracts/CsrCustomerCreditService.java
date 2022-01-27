@@ -16,7 +16,7 @@ public interface CsrCustomerCreditService {
     DataResult<List<CsrCustomerCreditDto>> findActiveCreditsByCustomerId(Long customerId);
     DataResult<List<CsrCustomerCreditDto>> findByCreditId(Long creditId);
     DataResult<CsrCustomerCreditDto> applyForCredit(CsrCustomerCreditSaveRequestDto csrCustomerCreditSaveRequestDto);
-    DataResult<CsrCustomerCreditDto> customerResponseCredit(CsrCustomerCreditResponseDto csrCustomerCreditResponseDto);
+    DataResult<CsrCustomerCreditDto> customerCreditResponse(CsrCustomerCreditResponseDto csrCustomerCreditResponseDto);
     Result delete(Long id);
     DataResult<List<CsrCustomerCreditDto>> findCustomerCreditsResults(String identityNumber, Date dateOfBirth);
     DataResult<CsrCustomerCreditDto> findCustomerCreditsResultBySystemApproved(String identityNumber, Date dateOfBirth);
