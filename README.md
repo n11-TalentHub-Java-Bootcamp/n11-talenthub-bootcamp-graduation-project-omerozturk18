@@ -69,11 +69,11 @@ docker-compose up -d
 ```
 
 ## Setup - Front-End
-<b>
-```bash
+
+```javascript
 cd n11-talenthub-bootcamp-graduation-project-omerozturk18/Frontend
 ```
-</b>
+
 
 - Install npm packages
 
