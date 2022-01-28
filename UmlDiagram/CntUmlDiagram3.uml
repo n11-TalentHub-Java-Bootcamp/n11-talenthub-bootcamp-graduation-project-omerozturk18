@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Projects/n11-bootcamp-graduation-project/src/main/java/com/omerozturk/N11GraduationProject/cnt</OriginalElement>
+  <nodes>
+    <node x="514.625" y="10.0">com.omerozturk.N11GraduationProject.cnt.services.concretes.CntMessageServiceImpl</node>
+    <node x="713.0" y="247.0">com.omerozturk.N11GraduationProject.cnt.repositories.abstracts.CntMessageDao</node>
+    <node x="258.625" y="57.0">com.omerozturk.N11GraduationProject.cnt.utilities.exception.CntMessageNotFoundException</node>
+    <node x="569.1242816091954" y="-107.5">com.omerozturk.N11GraduationProject.cnt.services.abstracts.CntMessageService</node>
+    <node x="685.0" y="164.0">com.omerozturk.N11GraduationProject.cnt.services.entityservice.CntMessageEntityService</node>
+    <node x="848.125" y="10.0">com.omerozturk.N11GraduationProject.gen.utilities.service.BaseEntityService</node>
+    <node x="560.1242816091954" y="-249.0">com.omerozturk.N11GraduationProject.cnt.api.controller.CntMessageController</node>
+    <node x="296.125" y="152.0">com.omerozturk.N11GraduationProject.cnt.utilities.converter.CntMessageMapper</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.omerozturk.N11GraduationProject.cnt.services.concretes.CntMessageServiceImpl" target="com.omerozturk.N11GraduationProject.cnt.services.abstracts.CntMessageService" relationship="REALIZATION">
+      <point x="-17.625" y="-14.5" />
+      <point x="599.5" y="-26.0" />
+      <point x="598.4576149425287" y="-26.0" />
+      <point x="-58.66666666666663" y="-14.5" />
+    </edge>
+    <edge source="com.omerozturk.N11GraduationProject.cnt.services.entityservice.CntMessageEntityService" target="com.omerozturk.N11GraduationProject.cnt.repositories.abstracts.CntMessageDao" relationship="DEPENDENCY">
+      <point x="-1.5" y="19.5" />
+      <point x="789.5" y="269.5" />
+      <point x="791.0" y="269.5" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="com.omerozturk.N11GraduationProject.cnt.api.controller.CntMessageController" target="com.omerozturk.N11GraduationProject.cnt.services.abstracts.CntMessageService" relationship="DEPENDENCY">
+      <point x="-48.5" y="14.5" />
+      <point x="608.6242816091954" y="-163.75" />
+      <point x="609.5" y="-163.75" />
+      <point x="-47.62428160919535" y="-3.0" />
+    </edge>
+    <edge source="com.omerozturk.N11GraduationProject.cnt.services.concretes.CntMessageServiceImpl" target="com.omerozturk.N11GraduationProject.cnt.services.entityservice.CntMessageEntityService" relationship="TO_ONE">
+      <point x="93.375" y="5.5" />
+      <point x="710.5" y="24.5" />
+      <point x="783.875" y="24.5" />
+      <point x="783.875" y="101.5" />
+      <point x="784.5" y="101.5" />
+      <point x="-6.5" y="-17.5" />
+    </edge>
+    <edge source="com.omerozturk.N11GraduationProject.cnt.services.entityservice.CntMessageEntityService" target="com.omerozturk.N11GraduationProject.gen.utilities.service.BaseEntityService" relationship="GENERALIZATION">
+      <point x="53.0" y="14.5" />
+      <point x="844.0" y="178.5" />
+      <point x="959.5" y="178.5" />
+      <point x="7.875" y="2.5" />
+    </edge>
+    <edge source="com.omerozturk.N11GraduationProject.cnt.services.concretes.CntMessageServiceImpl" target="com.omerozturk.N11GraduationProject.cnt.services.entityservice.CntMessageEntityService" relationship="DEPENDENCY">
+      <point x="25.625" y="14.5" />
+      <point x="642.75" y="125.5" />
+      <point x="734.5" y="125.5" />
+      <point x="-56.5" y="-10.5" />
+    </edge>
+    <edge source="com.omerozturk.N11GraduationProject.cnt.api.controller.CntMessageController" target="com.omerozturk.N11GraduationProject.cnt.services.abstracts.CntMessageService" relationship="TO_ONE">
+      <point x="48.5" y="14.5" />
+      <point x="705.6242816091954" y="-169.25" />
+      <point x="706.5" y="-169.25" />
+      <point x="49.37571839080465" y="-13.0" />
+    </edge>
+    <edge source="com.omerozturk.N11GraduationProject.cnt.services.concretes.CntMessageServiceImpl" target="com.omerozturk.N11GraduationProject.cnt.utilities.converter.CntMessageMapper" relationship="DEPENDENCY">
+      <point x="-43.625" y="23.5" />
+      <point x="573.5" y="125.5" />
+      <point x="386.625" y="125.5" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="com.omerozturk.N11GraduationProject.cnt.services.concretes.CntMessageServiceImpl" target="com.omerozturk.N11GraduationProject.cnt.utilities.exception.CntMessageNotFoundException" relationship="CREATE">
+      <point x="-76.875" y="14.5" />
+      <point x="540.25" y="24.5" />
+      <point x="386.625" y="24.5" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="com.omerozturk.N11GraduationProject.cnt.services.concretes.CntMessageServiceImpl" target="com.omerozturk.N11GraduationProject.gen.utilities.service.BaseEntityService" relationship="DEPENDENCY">
+      <point x="65.375" y="-14.5" />
+      <point x="680.5" y="10.0" />
+      <point x="680.5" y="-26.0" />
+      <point x="680.5" y="-34.25" />
+      <point x="1003.375" y="-34.25" />
+      <point x="51.75" y="-14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7963302752293578" showDependencies="true" x="657.0" y="202.49193548387098" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
