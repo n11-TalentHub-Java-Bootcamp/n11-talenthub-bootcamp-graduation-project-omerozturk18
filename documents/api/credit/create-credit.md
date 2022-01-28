@@ -5,7 +5,15 @@
 **Method** : `POST`
 
 **Request URL** : `/api/v1/credits`
+## Request Body
 
+```json
+{
+  "name": "string",
+  "shortName": "string",
+  "explanation": "string"
+}
+```
 ## Success Responses
 
 **Code** : `200 OK`
