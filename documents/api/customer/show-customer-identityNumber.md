@@ -2,7 +2,7 @@
 
 Returns a Customer By Customer Identity Number.
 
-**URL** : `/api/v1/customers/name/{identityNumber}`
+**URL** : `/api/v1/customers/identityNumber/{identityNumber}`
 
 **Method** : `GET`
 
