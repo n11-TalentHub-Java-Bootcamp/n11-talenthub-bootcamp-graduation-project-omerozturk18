@@ -70,7 +70,7 @@ docker-compose up -d
 
 ## Setup - Front-End
 <b>
-```javascript
+```bash
 cd n11-talenthub-bootcamp-graduation-project-omerozturk18/Frontend
 ```
 </b>
