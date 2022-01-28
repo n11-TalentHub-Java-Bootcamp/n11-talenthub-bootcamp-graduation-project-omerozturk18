@@ -51,7 +51,7 @@ public class CrdCreditServiceImpl implements CrdCreditService {
         }
         CrdCreditDto crdCreditDto = CrdCreditMapper
                 .INSTANCE.convertCrdCreditToCrdCreditDto(crdCredit);
-        return new SuccessDataResult<CrdCreditDto>(crdCreditDto,"Krediler Getirildi");
+        return new SuccessDataResult<CrdCreditDto>(crdCreditDto,"Kredi Getirildi");
     }
 
     @Override

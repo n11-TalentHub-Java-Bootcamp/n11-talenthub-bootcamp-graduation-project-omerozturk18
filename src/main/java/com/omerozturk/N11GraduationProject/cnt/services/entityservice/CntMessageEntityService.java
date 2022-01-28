@@ -14,6 +14,7 @@ public class CntMessageEntityService extends BaseEntityService<CntMessage, CntMe
         super(dao);
     }
     public List<CntMessage> findByPhoneNumber(String phoneNumber){
-       return getDao().findByPhoneNumber(phoneNumber);
+        List<CntMessage> byPhoneNumber = getDao().findByPhoneNumber(phoneNumber);
+        return byPhoneNumber;
     }
 }

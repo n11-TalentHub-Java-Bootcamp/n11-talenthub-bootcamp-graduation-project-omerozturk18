@@ -2,6 +2,7 @@ package com.omerozturk.N11GraduationProject.csr.api.controller;
 
 
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerSaveRequestDto;
+import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerUpdateRequestDto;
 import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrCustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,14 @@ public class CsrCustomerController {
     @PostMapping
     public ResponseEntity create(@RequestBody CsrCustomerSaveRequestDto csrCustomerSaveRequestDto){
         var result = csrCustomerService.save(csrCustomerSaveRequestDto);
+        if (result.isSuccess()){
+            return ResponseEntity.ok(result);
+        }
+        return ResponseEntity.badRequest().body(result);
+    }
+    @PutMapping
+    public ResponseEntity update(@RequestBody CsrCustomerUpdateRequestDto csrCustomerUpdateRequestDto){
+        var result = csrCustomerService.update(csrCustomerUpdateRequestDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
         }

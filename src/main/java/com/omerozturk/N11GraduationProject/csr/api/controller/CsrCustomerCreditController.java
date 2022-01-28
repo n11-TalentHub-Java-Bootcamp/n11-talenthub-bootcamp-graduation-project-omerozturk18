@@ -72,7 +72,7 @@ public class CsrCustomerCreditController {
         }
         return ResponseEntity.badRequest().body(result);
     }
-    @PostMapping("/response")
+    @PutMapping
     public ResponseEntity customerCreditResponse(@RequestBody CsrCustomerCreditResponseDto csrCustomerCreditResponseDto){
         var result = csrCustomerCreditService.customerCreditResponse(csrCustomerCreditResponseDto);
         if (result.isSuccess()){

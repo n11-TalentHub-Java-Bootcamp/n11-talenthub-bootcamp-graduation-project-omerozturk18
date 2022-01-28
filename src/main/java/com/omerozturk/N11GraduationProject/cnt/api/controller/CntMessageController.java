@@ -34,7 +34,7 @@ public class CntMessageController {
         return ResponseEntity.badRequest().body(result);
     }
 
-    @GetMapping("/phone/{phoneNuber}")
+    @GetMapping("/phone/{phoneNumber}")
     public ResponseEntity getByPhoneNumber(@PathVariable String phoneNumber){
         var result =  cntMessageService.findByPhoneNumber(phoneNumber);
         if (result.isSuccess()){

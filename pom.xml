@@ -125,6 +125,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>n11-bootcamp-omerozturk</finalName>
 	</build>
 
 </project>

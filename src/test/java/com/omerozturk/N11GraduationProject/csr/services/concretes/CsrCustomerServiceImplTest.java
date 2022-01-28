@@ -68,7 +68,7 @@ class CsrCustomerServiceImplTest {
 
     @Test
     void findByIdentityNumber() {
-        CsrCustomer csrCustomer = CsrCustomerServiceImplDataProvider.getCsrCustomerByIdentityNumber("12345678911");
+        CsrCustomer csrCustomer = CsrCustomerServiceImplDataProvider.getCsrCustomerByIdentityNumber("12345678912");
 
         when(csrCustomerEntityService.findById(1L)).thenReturn(csrCustomer);
 

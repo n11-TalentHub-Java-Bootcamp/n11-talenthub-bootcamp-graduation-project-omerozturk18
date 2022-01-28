@@ -85,7 +85,7 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
         }
         List<CsrCustomerCreditDto> crdCreditDtoList = CsrCustomerCreditMapper
                 .INSTANCE.convertCsrCustomerCreditListToCsrCustomerCreditDtoList(csrCustomerCreditList);
-        return new SuccessDataResult<>(crdCreditDtoList,"Kredi Türüe Göre Kredileri Getirildi");
+        return new SuccessDataResult<>(crdCreditDtoList,"Kredi Türüne Göre Kredileri Getirildi");
     }
 
 
@@ -122,6 +122,9 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
 
         csrCustomerCredit.setOperationDate(new Date());
         csrCustomerCredit.setCreditResult(csrCustomerCreditResponseDto.getCreditResult());
+        if(csrCustomerCredit.getCreditResult()==EnumCreditResult.CUSTOMER_DENIED){
+            csrCustomerCredit.setStatus(EnumStatus.PASSIVE);
+        }
         csrCustomerCreditEntityService.save(csrCustomerCredit);
         log.info("Customer Response Credit {}", csrCustomerCredit);
         CsrCustomerCreditDto csrCustomerCreditDto = CsrCustomerCreditMapper
@@ -139,7 +142,7 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
         csrCustomerCredit.setStatus(EnumStatus.DELETED);
         csrCustomerCreditEntityService.save(csrCustomerCredit);
         log.info("Deleted Customer Credit {}", csrCustomerCredit);
-        return new SuccessResult(" Kredi Silindi");
+        return new SuccessResult("Müşteri Kredisi Silindi");
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.omerozturk.N11GraduationProject.csr.services.concretes;
 import com.omerozturk.N11GraduationProject.csr.entities.concretes.CsrCustomer;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerDto;
 import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerSaveRequestDto;
+import com.omerozturk.N11GraduationProject.csr.entities.dtos.CsrCustomerUpdateRequestDto;
 import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrCustomerService;
 import com.omerozturk.N11GraduationProject.csr.services.entityservice.CsrCustomerEntityService;
 import com.omerozturk.N11GraduationProject.csr.utilities.converter.CsrCustomerMapper;
@@ -35,7 +36,7 @@ public class CsrCustomerServiceImpl implements CsrCustomerService {
         List<CsrCustomer> csrCustomerList = csrCustomerEntityService.findAll();
         List<CsrCustomerDto> csrCustomerDtoList = CsrCustomerMapper
                 .INSTANCE.convertCsrCustomerListToCsrCustomerDtoList(csrCustomerList);
-        return new SuccessDataResult<List<CsrCustomerDto>>(csrCustomerDtoList,"Veriler Listelendi");
+        return new SuccessDataResult<List<CsrCustomerDto>>(csrCustomerDtoList,"Müşteriler Listelendi");
     }
 
     @Override
@@ -68,6 +69,19 @@ public class CsrCustomerServiceImpl implements CsrCustomerService {
         csrCustomer.setStatus(EnumStatus.ACTIVE);
         csrCustomer = csrCustomerEntityService.save(csrCustomer);
         log.info("Customer Saved {}", csrCustomer);
+        CsrCustomerDto newCsrCustomerDto = CsrCustomerMapper
+                .INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
+        return new SuccessDataResult<>(newCsrCustomerDto,"İşlem Başarılı");
+    }
+
+    @Override
+    public DataResult<CsrCustomerDto> update(CsrCustomerUpdateRequestDto csrCustomerUpdateRequestDto) {
+        CsrCustomer csrCustomer = getCsrCustomer(csrCustomerUpdateRequestDto.getId());
+        csrCustomer.setPhoneNumber(csrCustomerUpdateRequestDto.getPhoneNumber());
+        csrCustomer.setSalary(csrCustomerUpdateRequestDto.getSalary());
+        csrCustomer.setOperationDate(new Date());
+        csrCustomer = csrCustomerEntityService.save(csrCustomer);
+        log.info("Customer Updated {}", csrCustomer);
         CsrCustomerDto newCsrCustomerDto = CsrCustomerMapper
                 .INSTANCE.convertCsrCustomerToCsrCustomerDto(csrCustomer);
         return new SuccessDataResult<>(newCsrCustomerDto,"İşlem Başarılı");
