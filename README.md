@@ -186,9 +186,9 @@ Error: response status is 404
 * [Show Customer Credit](Backend/documents/api/customerCredit/show-customerCredit.md) : `GET /api/customer-credits/{id}`
 * [Show Customer Credits By Customer Id](Backend/documents/api/customerCredit/show-customerCredits-customerId.md) : `GET /api/customer-credits/customer/{customerId}`
 * [Show Customer Credits By Credit Id](Backend/documents/api/customerCredit/show-customerCredits-creditId.md) : `GET /api/customer-credits/credit/{creditId}`
-* [Show Customer Credit Result](Backend/documents/api/customerCredit/show-customerCredits-result.md) : `GET /api/customer-credits/credit-result/{identityNumber}/{dateOfBirth}``
-* [Show Customer Credit Result Approved](Backend/documents/api/customerCredit/show-customerCredits-resultApproved.md) : `GET /api/customer-credits/credit-result-approved/{identityNumber}/{dateOfBirth}``
-* [Show Customer Credit Active Credit By Customer](Backend/documents/api/customerCredit/show-customerCredits-activeCredits.md) : `GET /api/customer-credits/active-credits-customer/{customerId}``
+* [Show Customer Credit Result](Backend/documents/api/customerCredit/show-customerCredits-result.md) : `GET /api/customer-credits/credit-result/{identityNumber}/{dateOfBirth}`
+* [Show Customer Credit Result Approved](Backend/documents/api/customerCredit/show-customerCredits-resultApproved.md) : `GET /api/customer-credits/credit-result-approved/{identityNumber}/{dateOfBirth}`
+* [Show Customer Credit Active Credit By Customer](Backend/documents/api/customerCredit/show-customerCredits-activeCredits.md) : `GET /api/customer-credits/active-credits-customer/{customerId}`
 * [Create Customer Credit Apply](Backend/documents/api/customerCredit/create-customerCredit.md) : `POST /api/customer-credits`
 * [Put Customer Credit Response](Backend/documents/api/customerCredit/update-customerCredit.md) : `POST /api/customer-credits`
 * [Delete Customer Credit](Backend/documents/api/customerCredit/delete-customerCredit.md) : `DELETE /api/customer-credits/{id}`
@@ -202,7 +202,6 @@ Error: response status is 404
 * [Show Message](Backend/documents/api/message/show-message.md) : `GET /api/messages/{id}`
 * [Show Message By Phone Number](Backend/documents/api/message/show-messages-phoneNumber.md) : `GET /api/messages/phone/{phoneNumber}`
 * [Create Message](Backend/documents/api/message/create-message.md) : `POST /api/messages`
-* [Update Message](Backend/documents/api/message/update-message.md) : `PUT /api/messages`
 * [Delete Message](Backend/documents/api/message/delete-message.md) : `DELETE /api/messages/{id}`
 
 ## Gen Package
