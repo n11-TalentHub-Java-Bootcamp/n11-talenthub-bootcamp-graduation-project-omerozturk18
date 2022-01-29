@@ -19,7 +19,7 @@ public class CsrCustomerCredit implements BaseEntity {
 
     @Id
     @GeneratedValue(generator = "generator")
-    @SequenceGenerator(name = "generator", sequenceName = "CSR_CUSTOMER_CREDIT_ID_SEQ")
+    @SequenceGenerator(name = "generator", sequenceName = "CSR_CUSTOMER_CREDIT_ID_SEQ", allocationSize = 1)
     private Long id;
     private BigDecimal creditAmount;
     private String resultExplanation;

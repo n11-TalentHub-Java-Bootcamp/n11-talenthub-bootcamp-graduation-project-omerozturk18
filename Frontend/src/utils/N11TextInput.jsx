@@ -8,7 +8,7 @@ export default function N11TextInput({ ...props }) {
         <div>
             <Label htmlFor={props.id}>{props.placeholder}</Label>
             <Input {...field} {...props}  className="form-control"  placeholder={props.placeholder + ' Giriniz'}  />
-            {meta.touched || !!meta.error ? (
+            {meta.touched && !!meta.error ? (
                 <span className="text-danger"><b>{meta.error}</b></span>
             ) : null}
         </div>

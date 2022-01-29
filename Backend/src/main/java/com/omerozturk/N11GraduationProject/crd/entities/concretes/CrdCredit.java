@@ -14,7 +14,7 @@ public class CrdCredit implements BaseEntity {
 
     @Id
     @GeneratedValue(generator = "generator")
-    @SequenceGenerator(name = "generator", sequenceName = "CRD_CREDIT_ID_SEQ")
+    @SequenceGenerator(name = "generator", sequenceName = "CRD_CREDIT_ID_SEQ", allocationSize = 1)
     private Long id;
     private String name;
     private String shortName;

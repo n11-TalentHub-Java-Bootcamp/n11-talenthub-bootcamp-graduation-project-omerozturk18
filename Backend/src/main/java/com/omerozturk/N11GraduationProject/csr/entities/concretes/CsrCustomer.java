@@ -16,7 +16,7 @@ public class CsrCustomer implements BaseEntity {
 
     @Id
     @GeneratedValue(generator = "generator")
-    @SequenceGenerator(name = "generator", sequenceName = "CSR_CUSTOMER_ID_SEQ")
+    @SequenceGenerator(name = "generator", sequenceName = "CSR_CUSTOMER_ID_SEQ", allocationSize = 1)
     private Long id;
     private String identityNumber;
     private String firstName;

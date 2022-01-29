@@ -56,12 +56,12 @@ public class CsrGuaranteeServiceImpl implements CsrGuaranteeService {
         List<CsrGuarantee> csrGuaranteeList = csrGuaranteeEntityService.findByCustomerId(customerId);
 
         if (csrGuaranteeList.isEmpty()){
-            throw new CsrCustomerNotFoundException("Kullanıcıya Ait Teminat Bulunanamdı!");
+            throw new CsrCustomerNotFoundException("Müşteriye Ait Teminat Bulunanamdı!");
         }
 
         List<CsrGuaranteeDto> customerGuaranteeDtoList = CsrGuaranteeMapper.INSTANCE
                 .convertCsrGuaranteeListToCsrGuaranteeDtoList(csrGuaranteeList);
-        return new SuccessDataResult<>(customerGuaranteeDtoList,"Kullanıcının Teminatları Getirildi");
+        return new SuccessDataResult<>(customerGuaranteeDtoList,"Müşterinin Teminatları Getirildi");
     }
 
     @Override
@@ -95,7 +95,7 @@ public class CsrGuaranteeServiceImpl implements CsrGuaranteeService {
                 .stream()
                 .filter(x -> !x.getCsrCustomerId().equals(csrCustomerId)).collect(Collectors.toList());
         if (matchCustomerIdList.size()>0){
-            return new ErrorDataResult<>("Farklı Kullnıcılara Aynı Anda Teminat Eklenemez!");
+            return new ErrorDataResult<>("Farklı Müşterilere Aynı Anda Teminat Eklenemez!");
         }
         List<CsrGuarantee> csrGuaranteeList =CsrGuaranteeMapper.INSTANCE
                 .convertCsrGuaranteeSaveRequestDtoListToCsrGuaranteeList(csrGuaranteeSaveRequestDtoList);

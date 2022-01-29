@@ -57,6 +57,7 @@ class CustomerGuarantee extends React.Component {
     next = () => {
         if (this.state.newRecord) {
             let customerGuaranteeService = new CustomerGuaranteeService();
+            console.log(this.state.customerGuaranteeList);
             customerGuaranteeService.addAllGuaranteeList(this.state.customerGuaranteeList)
                 .then(response => this.handleResponse(response.data))
                 .catch(error => this.handleError(error?.response?.data));
@@ -123,10 +124,10 @@ class CustomerGuarantee extends React.Component {
                                             <N11TextInput type="text" key={'explanation'} name="explanation" id="explanation" placeholder='Teminat Açıklaması' />
                                         </FormGroup>
                                         <FormGroup className="col-md-3">
-                                            <N11TextInput type="text" key={'guaranteeAmount'} name="guaranteeAmount" id="guaranteeAmount" placeholder='Tahmini Teminat Tutarı' />
+                                            <N11TextInput type="number" key={'guaranteeAmount'} name="guaranteeAmount" id="guaranteeAmount" placeholder='Tahmini Teminat Tutarı' />
                                         </FormGroup>
                                         <FormGroup className="col-md-1 m-t-30">
-                                            <Button type="submit" className="btn btn-primary waves-effect waves-light m-r-10">Ekle</Button>
+                                            <Button type="submit" className="btn btn-primary waves-effect waves-light m-r-10"  disabled={!this.initialValues.isValid}>Ekle</Button>
                                         </FormGroup>
                                     </Form>
                                 </Col>

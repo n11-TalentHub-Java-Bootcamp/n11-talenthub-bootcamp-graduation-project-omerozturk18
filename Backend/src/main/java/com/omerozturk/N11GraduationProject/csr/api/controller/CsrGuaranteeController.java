@@ -55,7 +55,7 @@ public class CsrGuaranteeController {
     }
 
     @PostMapping("/all")
-    public ResponseEntity saveAll( @RequestBody @Valid List<CsrGuaranteeSaveRequestDto> csrGuaranteeSaveRequestDtoList){
+    public ResponseEntity saveAll(@Valid @RequestBody List<CsrGuaranteeSaveRequestDto> csrGuaranteeSaveRequestDtoList){
         var result = csrGuaranteeService.saveAll(csrGuaranteeSaveRequestDtoList);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);

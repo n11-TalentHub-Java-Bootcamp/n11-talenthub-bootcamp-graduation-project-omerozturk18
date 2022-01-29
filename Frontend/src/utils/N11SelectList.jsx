@@ -11,7 +11,7 @@ export default function  N11SelectList({ ...props}) {
                 <option key={props.key} value={""}>Seçiniz</option>
                 {Object.keys(props.options).map(opt => (<option key={opt} value={opt}>{props.options[opt]}</option>))}
             </select>
-            {meta.touched || !!meta.error ? (
+            {meta.touched && !!meta.error ? (
                 <span className="text-danger"><b>{meta.error}</b></span>
             ) : null}
         </div>

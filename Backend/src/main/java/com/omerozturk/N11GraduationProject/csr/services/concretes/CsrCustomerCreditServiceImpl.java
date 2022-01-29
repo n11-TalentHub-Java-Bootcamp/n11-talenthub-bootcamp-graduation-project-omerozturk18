@@ -27,6 +27,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -202,7 +204,11 @@ public class CsrCustomerCreditServiceImpl implements CsrCustomerCreditService {
             return new ErrorDataResult<>("Kimlik Numarası ve Doğum Tarihi Boş Geçilemez!");
         }
         DataResult<CsrCustomerDto> customerDtoDataResult = csrCustomerService.findByIdentityNumber(identityNumber);
-        if(customerDtoDataResult.getData().getDateOfBirth().getTime() != dateOfBirth.getTime()){
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        String resultDateOfBirth = df.format(customerDtoDataResult.getData().getDateOfBirth());
+        String dateOfBirthString = df.format(dateOfBirth);
+
+        if( !resultDateOfBirth.equals(dateOfBirthString) ){
             return new ErrorDataResult<>("Veriler Hatalı, Lütfen Bilgilerinizi Kontrol Ediniz!");
         }
         return new SuccessDataResult();

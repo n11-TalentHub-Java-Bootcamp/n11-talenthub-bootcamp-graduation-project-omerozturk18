@@ -5,7 +5,7 @@ export class CustomerGuaranteeService {
         return axios.post(environment.customerGuaranteeServicePath, customerGuarantee) 
     }
     addAllGuaranteeList(customerGuaranteeList) {
-        return axios.post(environment.customerGuaranteeServicePath, customerGuaranteeList) 
+        return axios.post(environment.customerGuaranteeServicePath+"all/", customerGuaranteeList) 
     }
     getAllCustomerGuaranteeList() {
         return axios.get(environment.customerGuaranteeServicePath)

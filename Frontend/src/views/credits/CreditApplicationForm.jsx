@@ -86,7 +86,7 @@ class CreditApplicationForm extends React.Component {
                                     <N11TextInput type="date" name="dateOfBirth" id="dateOfBirth" placeholder='Doğum Tarihi' />
                                 </FormGroup>
                                 <Col md="12 text-right">
-                                    <Button type="submit" className="btn btn-success waves-effect waves-light m-r-10">Sorgula</Button>
+                                    <Button type="submit" className="btn btn-success waves-effect waves-light m-r-10" >Sorgula</Button>
                                 </Col>
                             </Form>
                         </Formik>

@@ -14,7 +14,7 @@ public class CntMessage implements BaseEntity {
 
     @Id
     @GeneratedValue(generator = "generator")
-    @SequenceGenerator(name = "generator", sequenceName = "CNT_MESSAGE_ID_SEQ")
+    @SequenceGenerator(name = "generator", sequenceName = "CNT_MESSAGE_ID_SEQ", allocationSize = 1)
     private Long id;
     private String title;
     private String contents;

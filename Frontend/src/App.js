@@ -6,7 +6,6 @@ import CreditApply from './views/credits/CreditApply';
 import InquireApplicationOfCredit from './views/credits/InquireApplicationOfCredit';
 import Cv from './views/cv/Cv';
 import Dashboard from './views/Dashboard';
-import Document from './views/document/Document';
 
 function App() {
     return (
@@ -21,7 +20,6 @@ function App() {
                             <Route path="/credit-apply" component={CreditApply} />
                             <Route path="/inquire-application-of-credit/:resultType" component={InquireApplicationOfCredit} />
                             <Route path="/cv" component={Cv} />
-                            <Route path="/document" component={Document} />
                             <Route path="/" component={Dashboard} />
                         </Switch>
                     </div>

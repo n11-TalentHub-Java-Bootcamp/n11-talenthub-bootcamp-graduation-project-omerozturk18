@@ -11,7 +11,7 @@ const HeaderBanner = () => {
                         <h1 className="title">N11 Bootcamp</h1>
                         <h4 className="subtitle font-light"> Bitirme Projesi</h4>
                         <Link to="/cv" className="btn btn-outline-light m-r-20 btn-md m-t-30 font-14">Özgeçmişimi Görmek İçin Tıklayınız</Link>
-                        <Link to="/document" className="btn btn-md m-t-30 btn-info-gradiant font-14">Döküman İçin Tıklayınız</Link>                    </Col>
+                    </Col>
                 </Row>
             </Container>
         </div>

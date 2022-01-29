@@ -17,7 +17,7 @@ public class CsrGuarantee implements BaseEntity {
 
     @Id
     @GeneratedValue(generator = "generator")
-    @SequenceGenerator(name = "generator", sequenceName = "CSR_GUARANTEE_ID_SEQ")
+    @SequenceGenerator(name = "generator", sequenceName = "CSR_GUARANTEE_ID_SEQ", allocationSize = 1)
     private Long id;
     private String explanation;
     @Enumerated(EnumType.STRING)
