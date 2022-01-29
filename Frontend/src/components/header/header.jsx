@@ -20,16 +20,15 @@ const Header = () => {
                         <Collapse isOpen={isOpen} navbar className="hover-dropdown font-14 ml-auto" id="h6-info">
                             <Nav navbar className="ml-auto">
                                 <NavItem>
-                                    <Link className="nav-link" to={"/components"}>
-                                        Components
-                                    </Link>
+                                    
                                 </NavItem>
                                 <NavItem>
-                                    <Link className="nav-link" to={"/custom-components"}>
-                                        Custom-Components
-                                    </Link>
+                                    
                                 </NavItem>
                             </Nav>
+                            <div className="act-buttons m-r-10">
+                                <Link to="/" className="btn btn-info font-14">Anasayfa</Link>
+                            </div>
                             <ButtonGroup>
                                 <UncontrolledButtonDropdown setActiveFromChild>
                                     <DropdownToggle tag="button" className="btn btn-danger-gradiant font-14" caret>
