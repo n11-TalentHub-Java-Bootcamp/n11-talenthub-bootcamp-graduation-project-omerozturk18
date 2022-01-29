@@ -205,6 +205,56 @@ Error: response status is 404
 * [Update Message](documents/api/message/update-message.md) : `PUT /api/messages`
 * [Delete Message](documents/api/message/delete-message.md) : `DELETE /api/messages/{id}`
 
+## Gen Package
+
+> - Generic Package
+- [Adapter](src/main/java/com/omerozturk/N11GraduationProject/gen/adapter) 
+   - Credit Score Service
+   - Mernis Service
+   - Twilio Sms Service
+   
+- [Configuration](src/main/java/com/omerozturk/N11GraduationProject/gen/configuration) 
+   - TwilioConfiguration
+   
+- [Excaption](src/main/java/com/omerozturk/N11GraduationProject/gen/excaption)
+   - CustomizedResponseEntityExceptionHandler
+   - ExceptionResponse
+   
+- [Utilities](src/main/java/com/omerozturk/N11GraduationProject/gen/utilities)
+   - Entity
+        - BaseEntity
+		- SmsRequest
+		
+   - Enums
+        - EnumStatus
+		- EnumYesNo
+		
+   - Result
+        - Result
+		   - SuccessResult		
+		   - ErrorResult   
+        - DataResult
+		   - SuccessDataResult		
+		   - ErrorDataResult
+
+   - Service
+        - BaseEntityService
+		   - findAll		
+		   - findById
+		   - save		
+		   - delete		   
+		   
+
+## Uml Diagram
+
+* [Show Crd Package Uml Diagram](documents/UmlDiagram/crd/readme.md) 
+* [Show Csr Package Uml Diagram](documents/UmlDiagram/csr/readme.md) 
+* [Show Cnt Package Uml Diagram](documents/UmlDiagram/cnt/readme.md) 
+
+## OpenApi Swagger
+
+* [Show OpenApi Yml File](documents/swagger/openapi.yml) 
+* [Show OpenApi Json File](documents/swagger/openapi.json) 
 
 ## Author
 
