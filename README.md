@@ -253,7 +253,7 @@ Error: response status is 404
 
 ## OpenApi Swagger
 
-* [Show OpenApi Yml File](documents/swagger/openapi.yaml) 
+* [Show OpenApi Yaml File](documents/swagger/openapi.yaml) 
 * [Show OpenApi Json File](documents/swagger/openapi.json) 
 
 ## Author
