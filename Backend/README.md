@@ -61,9 +61,9 @@
 * [Show Customer Credit](documents/api/customerCredit/show-customerCredit.md) : `GET /api/customer-credits/{id}`
 * [Show Customer Credits By Customer Id](documents/api/customerCredit/show-customerCredits-customerId.md) : `GET /api/customer-credits/customer/{customerId}`
 * [Show Customer Credits By Credit Id](documents/api/customerCredit/show-customerCredits-creditId.md) : `GET /api/customer-credits/credit/{creditId}`
-* [Show Customer Credit Result](documents/api/customerCredit/show-customerCredits-result.md) : `GET /api/customer-credits/credit-result/{identityNumber}/{dateOfBirth}``
-* [Show Customer Credit Result Approved](documents/api/customerCredit/show-customerCredits-resultApproved.md) : `GET /api/customer-credits/credit-result-approved/{identityNumber}/{dateOfBirth}``
-* [Show Customer Credit Active Credit By Customer](documents/api/customerCredit/show-customerCredits-activeCredits.md) : `GET /api/customer-credits/active-credits-customer/{customerId}``
+* [Show Customer Credit Result](documents/api/customerCredit/show-customerCredits-result.md) : `GET /api/customer-credits/credit-result/{identityNumber}/{dateOfBirth}`
+* [Show Customer Credit Result Approved](documents/api/customerCredit/show-customerCredits-resultApproved.md) : `GET /api/customer-credits/credit-result-approved/{identityNumber}/{dateOfBirth}`
+* [Show Customer Credit Active Credit By Customer](documents/api/customerCredit/show-customerCredits-activeCredits.md) : `GET /api/customer-credits/active-credits-customer/{customerId}`
 * [Create Customer Credit Apply](documents/api/customerCredit/create-customerCredit.md) : `POST /api/customer-credits`
 * [Put Customer Credit Response](documents/api/customerCredit/update-customerCredit.md) : `POST /api/customer-credits`
 * [Delete Customer Credit](documents/api/customerCredit/delete-customerCredit.md) : `DELETE /api/customer-credits/{id}`
@@ -77,7 +77,6 @@
 * [Show Message](documents/api/message/show-message.md) : `GET /api/messages/{id}`
 * [Show Message By Phone Number](documents/api/message/show-messages-phoneNumber.md) : `GET /api/messages/phone/{phoneNumber}`
 * [Create Message](documents/api/message/create-message.md) : `POST /api/messages`
-* [Update Message](documents/api/message/update-message.md) : `PUT /api/messages`
 * [Delete Message](documents/api/message/delete-message.md) : `DELETE /api/messages/{id}`
 
 ## Gen Package
