@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Date;
 
 @RestController
@@ -65,7 +66,7 @@ public class CsrCustomerCreditController {
 
 
     @PostMapping
-    public ResponseEntity applyForCredit(@RequestBody CsrCustomerCreditSaveRequestDto csrCustomerCreditSaveRequestDto){
+    public ResponseEntity applyForCredit(@Valid @RequestBody CsrCustomerCreditSaveRequestDto csrCustomerCreditSaveRequestDto){
         var result = csrCustomerCreditService.applyForCredit(csrCustomerCreditSaveRequestDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -73,7 +74,7 @@ public class CsrCustomerCreditController {
         return ResponseEntity.badRequest().body(result);
     }
     @PutMapping
-    public ResponseEntity customerCreditResponse(@RequestBody CsrCustomerCreditResponseDto csrCustomerCreditResponseDto){
+    public ResponseEntity customerCreditResponse(@Valid @RequestBody CsrCustomerCreditResponseDto csrCustomerCreditResponseDto){
         var result = csrCustomerCreditService.customerCreditResponse(csrCustomerCreditResponseDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);

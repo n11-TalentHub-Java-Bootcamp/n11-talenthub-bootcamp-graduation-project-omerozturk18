@@ -56,3 +56,17 @@
   "detail": "uri=/api/v1/customers"
 }
 ```
+
+## Error Responses - Not Valid
+
+**Code** : `400`
+
+**Sample Response Body** :
+
+```json
+{
+  "errorDate": "2022-01-29T11:54:52.685+00:00",
+  "message": "Kimlik No boş bırakılamaz, Kimlik No Rakam ve 11 Karakter Olmalıdır, Telefon Numarası Rakam ve 10 Karakter Olmalıdır",
+  "detail": "uri=/api/v1/customers"
+}
+```

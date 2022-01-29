@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -45,7 +46,7 @@ public class CsrGuaranteeController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody CsrGuaranteeSaveRequestDto csrGuaranteeSaveRequestDto){
+    public ResponseEntity create(@Valid @RequestBody CsrGuaranteeSaveRequestDto csrGuaranteeSaveRequestDto){
         var result = csrGuaranteeService.save(csrGuaranteeSaveRequestDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -54,7 +55,7 @@ public class CsrGuaranteeController {
     }
 
     @PostMapping("/all")
-    public ResponseEntity saveAll(@RequestBody List<CsrGuaranteeSaveRequestDto> csrGuaranteeSaveRequestDtoList){
+    public ResponseEntity saveAll( @RequestBody @Valid List<CsrGuaranteeSaveRequestDto> csrGuaranteeSaveRequestDtoList){
         var result = csrGuaranteeService.saveAll(csrGuaranteeSaveRequestDtoList);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);

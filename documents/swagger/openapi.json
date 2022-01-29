@@ -1,661 +1,1109 @@
-openapi: 3.0.1
-info:
-  title: N11 Bootcamp Graduation
-  version: v0.0.1
-servers:
-  - url: http://localhost:8080
-    description: Generated server url
-paths:
-  /api/v1/customers:
-    get:
-      tags:
-        - csr-customer-controller
-      operationId: getAll_2
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-    put:
-      tags:
-        - csr-customer-controller
-      operationId: update
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CsrCustomerUpdateRequestDto'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-    post:
-      tags:
-        - csr-customer-controller
-      operationId: create_2
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CsrCustomerSaveRequestDto'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/customer-credits:
-    get:
-      tags:
-        - csr-customer-credit-controller
-      operationId: getAll_3
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-    put:
-      tags:
-        - csr-customer-credit-controller
-      operationId: customerCreditResponse
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CsrCustomerCreditResponseDto'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-    post:
-      tags:
-        - csr-customer-credit-controller
-      operationId: applyForCredit
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CsrCustomerCreditSaveRequestDto'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/messages:
-    get:
-      tags:
-        - cnt-message-controller
-      operationId: getAll
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-    post:
-      tags:
-        - cnt-message-controller
-      operationId: create
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CntMessageSendRequestDto'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/guarantees:
-    get:
-      tags:
-        - csr-guarantee-controller
-      operationId: getAll_1
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-    post:
-      tags:
-        - csr-guarantee-controller
-      operationId: create_1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CsrGuaranteeSaveRequestDto'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/guarantees/all:
-    post:
-      tags:
-        - csr-guarantee-controller
-      operationId: saveAll
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/CsrGuaranteeSaveRequestDto'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/credits:
-    get:
-      tags:
-        - crd-credit-controller
-      operationId: getAll_4
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-    post:
-      tags:
-        - crd-credit-controller
-      operationId: create_3
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CrdCreditSaveRequestDto'
-        required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/messages/{id}:
-    get:
-      tags:
-        - cnt-message-controller
-      operationId: getById
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-    delete:
-      tags:
-        - cnt-message-controller
-      operationId: delete
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/messages/phone/{phoneNumber}:
-    get:
-      tags:
-        - cnt-message-controller
-      operationId: getByPhoneNumber
-      parameters:
-        - name: phoneNumber
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/guarantees/{id}:
-    get:
-      tags:
-        - csr-guarantee-controller
-      operationId: getById_1
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-    delete:
-      tags:
-        - csr-guarantee-controller
-      operationId: delete_1
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/guarantees/customer/{customerId}:
-    get:
-      tags:
-        - csr-guarantee-controller
-      operationId: getByCustomerId
-      parameters:
-        - name: customerId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/customers/{id}:
-    get:
-      tags:
-        - csr-customer-controller
-      operationId: getById_2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-    delete:
-      tags:
-        - csr-customer-controller
-      operationId: delete_2
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/customers/identityNumber/{identityNumber}:
-    get:
-      tags:
-        - csr-customer-controller
-      operationId: getByIdentityNumber
-      parameters:
-        - name: identityNumber
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/customer-credits/{id}:
-    get:
-      tags:
-        - csr-customer-credit-controller
-      operationId: getById_3
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-    delete:
-      tags:
-        - csr-customer-credit-controller
-      operationId: delete_3
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/customer-credits/customer/{customerId}:
-    get:
-      tags:
-        - csr-customer-credit-controller
-      operationId: getByCustomerId_1
-      parameters:
-        - name: customerId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/customer-credits/credit/{creditId}:
-    get:
-      tags:
-        - csr-customer-credit-controller
-      operationId: findByCreditId
-      parameters:
-        - name: creditId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/customer-credits/credit-result/{identityNumber}/{dateOfBirth}:
-    get:
-      tags:
-        - csr-customer-credit-controller
-      operationId: getCustomerCreditsResults
-      parameters:
-        - name: identityNumber
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: dateOfBirth
-          in: path
-          required: true
-          schema:
-            type: string
-            format: date-time
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/customer-credits/credit-result-approved/{identityNumber}/{dateOfBirth}:
-    get:
-      tags:
-        - csr-customer-credit-controller
-      operationId: getCustomerCreditsResultBySystemApproved
-      parameters:
-        - name: identityNumber
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: dateOfBirth
-          in: path
-          required: true
-          schema:
-            type: string
-            format: date-time
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/customer-credits/active-credits-customer/{customerId}:
-    get:
-      tags:
-        - csr-customer-credit-controller
-      operationId: getActiveCreditsByCustomerId
-      parameters:
-        - name: customerId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/credits/{id}:
-    get:
-      tags:
-        - crd-credit-controller
-      operationId: getById_4
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-    delete:
-      tags:
-        - crd-credit-controller
-      operationId: delete_4
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/credits/name/{creditName}:
-    get:
-      tags:
-        - crd-credit-controller
-      operationId: getByCreditName
-      parameters:
-        - name: creditName
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-components:
-  schemas:
-    CsrCustomerUpdateRequestDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        phoneNumber:
-          type: string
-        salary:
-          type: number
-    CsrCustomerCreditResponseDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        creditResult:
-          type: string
-          enum:
-            - SYSTEM_DENIED
-            - SYSTEM_APPROVED
-            - CUSTOMER_DENIED
-            - CUSTOMER_APPROVED
-        crdCreditId:
-          type: integer
-          format: int64
-        csrCustomerId:
-          type: integer
-          format: int64
-    CntMessageSendRequestDto:
-      type: object
-      properties:
-        title:
-          type: string
-        contents:
-          type: string
-        csrCustomerId:
-          type: integer
-          format: int64
-    CsrGuaranteeSaveRequestDto:
-      type: object
-      properties:
-        explanation:
-          type: string
-        guaranteeAmount:
-          type: number
-        guaranteeType:
-          type: string
-          enum:
-            - CAR
-            - HOME
-            - GOLD
-        csrCustomerId:
-          type: integer
-          format: int64
-    CsrCustomerSaveRequestDto:
-      type: object
-      properties:
-        identityNumber:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        dateOfBirth:
-          type: string
-          format: date-time
-        phoneNumber:
-          type: string
-        salary:
-          type: number
-    CsrCustomerCreditSaveRequestDto:
-      type: object
-      properties:
-        crdCreditId:
-          type: integer
-          format: int64
-        csrCustomerId:
-          type: integer
-          format: int64
-    CrdCreditSaveRequestDto:
-      type: object
-      properties:
-        name:
-          type: string
-        shortName:
-          type: string
-        explanation:
-          type: string
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "N11Graduation API",
+    "description": "N11 Graduation Project Application",
+    "license": {
+      "name": "Ömer Öztürk",
+      "url": "https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-omerozturk18"
+    },
+    "version": "v0.0.1"
+  },
+  "externalDocs": {
+    "description": "N11Graduation Documentation",
+    "url": "https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-omerozturk18/blob/main/README.md"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/v1/customers": {
+      "get": {
+        "tags": [
+          "csr-customer-controller"
+        ],
+        "operationId": "getAll_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "csr-customer-controller"
+        ],
+        "operationId": "update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CsrCustomerUpdateRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "csr-customer-controller"
+        ],
+        "operationId": "create_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CsrCustomerSaveRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customer-credits": {
+      "get": {
+        "tags": [
+          "csr-customer-credit-controller"
+        ],
+        "operationId": "getAll_3",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "csr-customer-credit-controller"
+        ],
+        "operationId": "customerCreditResponse",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CsrCustomerCreditResponseDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "csr-customer-credit-controller"
+        ],
+        "operationId": "applyForCredit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CsrCustomerCreditSaveRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/messages": {
+      "get": {
+        "tags": [
+          "cnt-message-controller"
+        ],
+        "operationId": "getAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "cnt-message-controller"
+        ],
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CntMessageSendRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/guarantees": {
+      "get": {
+        "tags": [
+          "csr-guarantee-controller"
+        ],
+        "operationId": "getAll_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "csr-guarantee-controller"
+        ],
+        "operationId": "create_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CsrGuaranteeSaveRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/guarantees/all": {
+      "post": {
+        "tags": [
+          "csr-guarantee-controller"
+        ],
+        "operationId": "saveAll",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CsrGuaranteeSaveRequestDto"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/credits": {
+      "get": {
+        "tags": [
+          "crd-credit-controller"
+        ],
+        "operationId": "getAll_4",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "crd-credit-controller"
+        ],
+        "operationId": "create_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrdCreditSaveRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/messages/{id}": {
+      "get": {
+        "tags": [
+          "cnt-message-controller"
+        ],
+        "operationId": "getById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cnt-message-controller"
+        ],
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/messages/phone/{phoneNumber}": {
+      "get": {
+        "tags": [
+          "cnt-message-controller"
+        ],
+        "operationId": "getByPhoneNumber",
+        "parameters": [
+          {
+            "name": "phoneNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/guarantees/{id}": {
+      "get": {
+        "tags": [
+          "csr-guarantee-controller"
+        ],
+        "operationId": "getById_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "csr-guarantee-controller"
+        ],
+        "operationId": "delete_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/guarantees/customer/{customerId}": {
+      "get": {
+        "tags": [
+          "csr-guarantee-controller"
+        ],
+        "operationId": "getByCustomerId",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customers/{id}": {
+      "get": {
+        "tags": [
+          "csr-customer-controller"
+        ],
+        "operationId": "getById_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "csr-customer-controller"
+        ],
+        "operationId": "delete_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customers/identityNumber/{identityNumber}": {
+      "get": {
+        "tags": [
+          "csr-customer-controller"
+        ],
+        "operationId": "getByIdentityNumber",
+        "parameters": [
+          {
+            "name": "identityNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customer-credits/{id}": {
+      "get": {
+        "tags": [
+          "csr-customer-credit-controller"
+        ],
+        "operationId": "getById_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "csr-customer-credit-controller"
+        ],
+        "operationId": "delete_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customer-credits/customer/{customerId}": {
+      "get": {
+        "tags": [
+          "csr-customer-credit-controller"
+        ],
+        "operationId": "getByCustomerId_1",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customer-credits/credit/{creditId}": {
+      "get": {
+        "tags": [
+          "csr-customer-credit-controller"
+        ],
+        "operationId": "findByCreditId",
+        "parameters": [
+          {
+            "name": "creditId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customer-credits/credit-result/{identityNumber}/{dateOfBirth}": {
+      "get": {
+        "tags": [
+          "csr-customer-credit-controller"
+        ],
+        "operationId": "getCustomerCreditsResults",
+        "parameters": [
+          {
+            "name": "identityNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateOfBirth",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customer-credits/credit-result-approved/{identityNumber}/{dateOfBirth}": {
+      "get": {
+        "tags": [
+          "csr-customer-credit-controller"
+        ],
+        "operationId": "getCustomerCreditsResultBySystemApproved",
+        "parameters": [
+          {
+            "name": "identityNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateOfBirth",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/customer-credits/active-credits-customer/{customerId}": {
+      "get": {
+        "tags": [
+          "csr-customer-credit-controller"
+        ],
+        "operationId": "getActiveCreditsByCustomerId",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/credits/{id}": {
+      "get": {
+        "tags": [
+          "crd-credit-controller"
+        ],
+        "operationId": "getById_4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "crd-credit-controller"
+        ],
+        "operationId": "delete_4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/credits/name/{creditName}": {
+      "get": {
+        "tags": [
+          "crd-credit-controller"
+        ],
+        "operationId": "getByCreditName",
+        "parameters": [
+          {
+            "name": "creditName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CsrCustomerUpdateRequestDto": {
+        "required": [
+          "phoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "phoneNumber": {
+            "pattern": "[0-9\\s]{10}",
+            "type": "string"
+          },
+          "salary": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "number"
+          }
+        }
+      },
+      "CsrCustomerCreditResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creditResult": {
+            "type": "string",
+            "enum": [
+              "SYSTEM_DENIED",
+              "SYSTEM_APPROVED",
+              "CUSTOMER_DENIED",
+              "CUSTOMER_APPROVED"
+            ]
+          },
+          "crdCreditId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "csrCustomerId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CntMessageSendRequestDto": {
+        "required": [
+          "contents",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "contents": {
+            "type": "string"
+          },
+          "csrCustomerId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CsrGuaranteeSaveRequestDto": {
+        "required": [
+          "explanation"
+        ],
+        "type": "object",
+        "properties": {
+          "explanation": {
+            "type": "string"
+          },
+          "guaranteeAmount": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "number"
+          },
+          "guaranteeType": {
+            "type": "string",
+            "enum": [
+              "CAR",
+              "HOME",
+              "GOLD"
+            ]
+          },
+          "csrCustomerId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CsrCustomerSaveRequestDto": {
+        "required": [
+          "firstName",
+          "identityNumber",
+          "lastName",
+          "phoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "identityNumber": {
+            "pattern": "[0-9\\s]{11}",
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "phoneNumber": {
+            "pattern": "[0-9\\s]{10}",
+            "type": "string"
+          },
+          "salary": {
+            "minimum": 0,
+            "exclusiveMinimum": false,
+            "type": "number"
+          }
+        }
+      },
+      "CsrCustomerCreditSaveRequestDto": {
+        "type": "object",
+        "properties": {
+          "crdCreditId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "csrCustomerId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CrdCreditSaveRequestDto": {
+        "required": [
+          "explanation",
+          "name",
+          "shortName"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "shortName": {
+            "type": "string"
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

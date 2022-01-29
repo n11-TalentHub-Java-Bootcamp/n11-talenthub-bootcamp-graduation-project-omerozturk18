@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/messages")
 @CrossOrigin
@@ -44,7 +46,7 @@ public class CntMessageController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody CntMessageSendRequestDto cntMessageSaveRequestDto){
+    public ResponseEntity create(@Valid @RequestBody CntMessageSendRequestDto cntMessageSaveRequestDto){
         var result = cntMessageService.sendMessage(cntMessageSaveRequestDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);

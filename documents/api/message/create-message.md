@@ -48,3 +48,17 @@
   "detail": "uri=/api/v1/messages"
 }
 ```
+
+## Error Responses - Not Valid
+
+**Code** : `400`
+
+**Sample Response Body** :
+
+```json
+{
+  "errorDate": "2022-01-29T11:30:38.323+00:00",
+  "message": "Sms Başlığı Boş Olamaz, Sms İçeriği Boş Olamaz",
+  "detail": "uri=/api/v1/messages"
+}
+```

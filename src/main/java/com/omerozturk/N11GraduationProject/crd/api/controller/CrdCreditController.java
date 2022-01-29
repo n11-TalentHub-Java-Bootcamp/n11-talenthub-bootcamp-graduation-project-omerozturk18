@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/credits")
 @CrossOrigin
@@ -44,7 +46,7 @@ public class CrdCreditController {
 
     
     @PostMapping
-    public ResponseEntity create(@RequestBody CrdCreditSaveRequestDto crdCreditCreditSaveRequestDto){
+    public ResponseEntity create(@Valid @RequestBody CrdCreditSaveRequestDto crdCreditCreditSaveRequestDto){
         var result = crdCreditCreditService.save(crdCreditCreditSaveRequestDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);

@@ -51,3 +51,17 @@
   "detail": "uri=/api/v1/customers"
 }
 ```
+
+## Error Responses - Not Valid
+
+**Code** : `400`
+
+**Sample Response Body** :
+
+```json
+{
+  "errorDate": "2022-01-29T11:54:10.558+00:00",
+  "message": "Telefon Numarası Rakam ve 10 Karakter Olmalıdır, Telefon Numarası Boş Bırakılamaz",
+  "detail": "uri=/api/v1/customers"
+}
+```

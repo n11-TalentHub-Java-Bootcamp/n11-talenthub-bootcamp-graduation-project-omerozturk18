@@ -1,7 +1,14 @@
 openapi: 3.0.1
 info:
-  title: N11 Bootcamp Graduation
+  title: N11Graduation API
+  description: N11 Graduation Project Application
+  license:
+    name: Ömer Öztürk
+    url: https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-omerozturk18
   version: v0.0.1
+externalDocs:
+  description: N11Graduation Documentation
+  url: https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-omerozturk18/blob/main/README.md
 servers:
   - url: http://localhost:8080
     description: Generated server url
@@ -571,14 +578,19 @@ paths:
 components:
   schemas:
     CsrCustomerUpdateRequestDto:
+      required:
+        - phoneNumber
       type: object
       properties:
         id:
           type: integer
           format: int64
         phoneNumber:
+          pattern: '[0-9\s]{10}'
           type: string
         salary:
+          minimum: 0
+          exclusiveMinimum: false
           type: number
     CsrCustomerCreditResponseDto:
       type: object
@@ -600,6 +612,9 @@ components:
           type: integer
           format: int64
     CntMessageSendRequestDto:
+      required:
+        - contents
+        - title
       type: object
       properties:
         title:
@@ -610,11 +625,15 @@ components:
           type: integer
           format: int64
     CsrGuaranteeSaveRequestDto:
+      required:
+        - explanation
       type: object
       properties:
         explanation:
           type: string
         guaranteeAmount:
+          minimum: 0
+          exclusiveMinimum: false
           type: number
         guaranteeType:
           type: string
@@ -626,9 +645,15 @@ components:
           type: integer
           format: int64
     CsrCustomerSaveRequestDto:
+      required:
+        - firstName
+        - identityNumber
+        - lastName
+        - phoneNumber
       type: object
       properties:
         identityNumber:
+          pattern: '[0-9\s]{11}'
           type: string
         firstName:
           type: string
@@ -638,8 +663,11 @@ components:
           type: string
           format: date-time
         phoneNumber:
+          pattern: '[0-9\s]{10}'
           type: string
         salary:
+          minimum: 0
+          exclusiveMinimum: false
           type: number
     CsrCustomerCreditSaveRequestDto:
       type: object
@@ -651,6 +679,10 @@ components:
           type: integer
           format: int64
     CrdCreditSaveRequestDto:
+      required:
+        - explanation
+        - name
+        - shortName
       type: object
       properties:
         name:

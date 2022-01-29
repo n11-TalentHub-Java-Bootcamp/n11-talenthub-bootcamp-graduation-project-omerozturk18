@@ -4,6 +4,7 @@ import com.omerozturk.N11GraduationProject.csr.entities.enums.EnumCreditResult;
 import com.omerozturk.N11GraduationProject.gen.utilities.enums.EnumStatus;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.util.Date;
 

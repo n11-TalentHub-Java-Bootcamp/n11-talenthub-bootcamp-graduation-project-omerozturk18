@@ -32,3 +32,16 @@
   }
 }
 ```
+## Error Responses - Not Valid
+
+**Code** : `400`
+
+**Sample Response Body** :
+
+```json
+{
+  "errorDate": "2022-01-29T11:55:20.232+00:00",
+  "message": "Kredi İsmi Boş Olamaz",
+  "detail": "uri=/api/v1/credits"
+}
+```

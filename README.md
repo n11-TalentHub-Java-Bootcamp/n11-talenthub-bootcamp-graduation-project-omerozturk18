@@ -213,8 +213,10 @@ Error: response status is 404
    - Mernis Service
    - Twilio Sms Service
    
-- [Configuration](src/main/java/com/omerozturk/N11GraduationProject/gen/configuration) 
+- [Configuration](src/main/java/com/omerozturk/N11GraduationProject/gen/configuration)
+   - SwaggerConfiguration 
    - TwilioConfiguration
+   
    
 - [Excaption](src/main/java/com/omerozturk/N11GraduationProject/gen/excaption)
    - CustomizedResponseEntityExceptionHandler
@@ -255,6 +257,8 @@ Error: response status is 404
 
 * [Show OpenApi Yaml File](documents/swagger/openapi.yaml) 
 * [Show OpenApi Json File](documents/swagger/openapi.json) 
+
+* [Run the Back of Swagger Adress](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/)
 
 ## Author
 

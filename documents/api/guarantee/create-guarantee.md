@@ -51,3 +51,17 @@
   "detail": "uri=/api/v1/guarantees"
 }
 ```
+
+## Error Responses - Not Valid
+
+**Code** : `400`
+
+**Sample Response Body** :
+
+```json
+{
+  "errorDate": "2022-01-29T11:34:04.285+00:00",
+  "message": "Teminat Açıklaması Boş Bırakılamaz",
+  "detail": "uri=/api/v1/guarantees"
+}
+```

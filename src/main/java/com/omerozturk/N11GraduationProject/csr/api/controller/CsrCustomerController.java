@@ -7,6 +7,7 @@ import com.omerozturk.N11GraduationProject.csr.services.abstracts.CsrCustomerSer
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/customers")
@@ -44,7 +45,7 @@ public class CsrCustomerController {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody CsrCustomerSaveRequestDto csrCustomerSaveRequestDto){
+    public ResponseEntity create(@Valid @RequestBody CsrCustomerSaveRequestDto csrCustomerSaveRequestDto){
         var result = csrCustomerService.save(csrCustomerSaveRequestDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);
@@ -52,7 +53,7 @@ public class CsrCustomerController {
         return ResponseEntity.badRequest().body(result);
     }
     @PutMapping
-    public ResponseEntity update(@RequestBody CsrCustomerUpdateRequestDto csrCustomerUpdateRequestDto){
+    public ResponseEntity update(@Valid @RequestBody CsrCustomerUpdateRequestDto csrCustomerUpdateRequestDto){
         var result = csrCustomerService.update(csrCustomerUpdateRequestDto);
         if (result.isSuccess()){
             return ResponseEntity.ok(result);

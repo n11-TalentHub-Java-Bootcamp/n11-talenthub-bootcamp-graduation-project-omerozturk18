@@ -78,7 +78,7 @@
 ## Error Responses
 
 
-**Code** : `404 OK`
+**Code** : `404`
 
 **Sample Response Body** :
 
