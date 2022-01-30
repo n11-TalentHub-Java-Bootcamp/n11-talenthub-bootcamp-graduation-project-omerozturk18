@@ -300,9 +300,9 @@ Error: response status is 404
 
 ## Uml Diagram
 
-* [Show Crd Package Uml Diagram](Backend/documents/UmlDiagram/crd/readme.md) 
-* [Show Csr Package Uml Diagram](Backend/documents/UmlDiagram/csr/readme.md) 
-* [Show Cnt Package Uml Diagram](Backend/documents/UmlDiagram/cnt/readme.md) 
+* [Show Crd Package Uml Diagram](Backend/documents/UmlDiagram/crd/README.md) 
+* [Show Csr Package Uml Diagram](Backend/documents/UmlDiagram/csr/README.md) 
+* [Show Cnt Package Uml Diagram](Backend/documents/UmlDiagram/cnt/README.md) 
 
 ## OpenApi Swagger
 
