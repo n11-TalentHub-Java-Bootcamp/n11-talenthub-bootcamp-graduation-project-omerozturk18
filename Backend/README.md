@@ -2,23 +2,22 @@
 
 ## Technologies & Structures Used
 <ul>
-
-        <li>Java 11</li>
-        <li>Spring Boot</li>
-        <li>Spring Data JPA</li>
-        <li>Spring HATEOAS</li>
-        <li>MapStruct</li>
-        <li>Loombak</li>
-        <li>Validation</li>
-		<li>Swagger</li>
-		<li>PostgreSQL</li>
-		<li>Unit Test</li>
-        <li>Builder Design Pattern</li>
-        <li>Factory Design Pattern</li>
-		<li>Single Design Pattern</li>
-        <li>Basic Result Type</li>
-		<li>Twilio Sms Send</li>
-		<li><b>tckimlik.nvi.gov.tr</b> Mernis Check Customer</li>
+    <li>Java 11</li>
+    <li>Spring Boot</li>
+    <li>Spring Data JPA</li>
+    <li>Spring HATEOAS</li>
+    <li>MapStruct</li>
+    <li>Loombak</li>
+    <li>Validation</li>
+    <li>Swagger</li>
+    <li>PostgreSQL</li>
+    <li>Unit Test</li>
+    <li>Builder Design Pattern</li>
+    <li>Factory Design Pattern</li>
+    <li>Single Design Pattern</li>
+    <li>Basic Result Type</li>
+    <li>Twilio Sms Send</li>
+    <li><b>tckimlik.nvi.gov.tr</b> Mernis Check Customer</li>
 </ul>
 
 ## ENDPOINTS

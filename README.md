@@ -1,9 +1,9 @@
 # N11 Bootcamp Graduation Project
 
-Hello, this project it was developed in line with the graduation assignment for the bootcamp offered free of charge in partnership with <b>Patika & N11</b>.
+Hello, this project it was developed in line with The graduation assignment for The bootcamp offered free of charge in partnership with <b>Patika & N11</b>.
 ## Technologies & Structures Used
 <ul>
-    <li>Back-End
+    <li>Backend
     <ul>
         <li>Java 11</li>
         <li>Spring Boot</li>
@@ -23,10 +23,10 @@ Hello, this project it was developed in line with the graduation assignment for 
 		<li><b>tckimlik.nvi.gov.tr</b> Mernis Check Customer</li>
     </ul>
     </li>
-    <li>Front-End
+    <li>Frontend
     <ul>
         <li>React</li>
-		 <li>Axios</li>
+		<li>Axios</li>
         <li>Reactstrap</li>
         <li>Formik</li>
         <li>Yup</li>
@@ -35,45 +35,86 @@ Hello, this project it was developed in line with the graduation assignment for 
     </li>
 </ul>
 
-# Setup - Back-End
+# Setup
 
-### Cloning the Project
+*** If You Do Not Have PostgreSQL Installed On Your Computer, You Can Use It Via Docker.
+
+### Cloning The Project
 
 ```java
 $ git clone https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-omerozturk18.git
 cd n11-talenthub-bootcamp-graduation-project-omerozturk18/Backend
 ```
-#### -> Running the Application Locally
-
+### Configuration Settings
+	
 - Open File `./src/main/resources/application.properties` .
 
-- Adapt the Following Settings According to Yourself.
+- Adapt The Following Settings According to Yourself.
+   - Replace The `172.25.192.1` Field Below With Your Own Ip Address.
+
 ```
-spring.datasource.url=jdbc:postgresql://localhost:5432/N11GraduationProject
+spring.datasource.url=jdbc:postgresql://172.25.192.1:5432/n11-graduation-project
 spring.datasource.username=postgres
 spring.datasource.password=12345
 spring.datasource.driver-class-name=org.postgresql.Driver
 ```
+- If You Change The `database name, username and password` and Will Use Docker, Please Also Update The `docker-compose.yml` Files
 
-- Create a Database named `N11GraduationProject` in PostgreSQL.
+## 1) Backend Setup
 
-- Run the Application With the Commands Below.	
 ```java
 mvn clean install
+```
+#### -> Running The Application Locally
+
+
+- Create a Database named `n11-graduation-project` in PostgreSQL.
+
+- Run The Application With The Commands Below.	
+```java
 mvn spring-boot:run
 ```
 
-#### -> Running the Application With Docker
+#### -> Running The Application With Docker
+
+- Run The Application With The Commands Below.	
+
+```docker
+docker build -t omerozturk-backend . 
+```
+
 ```docker
 docker-compose up -d
 ```
+*** If You Want To Use PostgreSQL Over Docker
 
-## Setup - Front-End
+- Please Follow The Steps Below for PostgreSQL
+    - Go to http://localhost:5050/browser/
+	- Password is Same as `docker-compose.yml`
+	- Right Click on `Servers` on The Left and Add a New Server
+	- Set a Name on The Screen That Comes Up and Switch To The Connection Tab
+	- Just Write Your Ip Address To The Host Address and Save It
+	- Create a Database Named `n11-graduation-project` in PostgreSQL.
+	- Run The Application With The Command Below.	
+	
+```docker
+docker start omerozturk-app-backend
+```
+*** If You Do Have PostgreSQL Installed On Your Computer
+- Please Follow The Steps Below
+    - Create a Database Named `n11-graduation-project` in PostgreSQL.
+	- Run The Application With The Command Below.	
+	
+```docker
+docker start omerozturk-app-backend
+```
+	
+## 2) Frontend  Setup
 
 ```javascript
 cd n11-talenthub-bootcamp-graduation-project-omerozturk18/Frontend
 ```
-
+#### -> Running The Application Locally
 
 - Install npm packages
 
@@ -81,11 +122,22 @@ cd n11-talenthub-bootcamp-graduation-project-omerozturk18/Frontend
 npm install
 ```
 
-- The Following Code is Used to Start the React Project.
+- The Following Code is Used to Start The React Project.
 
 ```bash
 npm start
 ```
+
+#### -> Running The Application With Docker
+
+- Run The Application With The Commands Below.	
+
+```docker
+docker build -t omerozturk-frontend . 
+docker-compose up -d
+```
+
+* [Frontend Url](http://localhost:3000/)
 
 ## Basic Result Type
 #### DataResult

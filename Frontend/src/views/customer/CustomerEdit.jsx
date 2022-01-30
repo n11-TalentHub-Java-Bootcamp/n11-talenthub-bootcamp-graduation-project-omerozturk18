@@ -83,11 +83,17 @@ class CustomerEdit extends React.Component {
                             <h1 className="title font-bold">Kredi Başvurusu</h1>
                             <h6 className="subtitle">Kredi Başvurusu İçin Lütfen Aşağıdaki Formu Doldurunuz</h6>
                         </Col>
+                        
                     </Row>
                 </Container>
 
                 <Container>
                     <Row>
+                    <Col md="12">
+                            <h5 className="text-danger font-bold">
+                                **Lütfen Kimlik Bilgilerinizi Doğru(Gerçek Kimlik Bilgileri) Giriniz Aksi Taktirde Mernis Doğrulama Nedeniyle Devam Edemeyeceksiniz.
+                            </h5>
+                        </Col>
                         <Col md="12">
                             <Formik
                                 initialValues={this.initialValues}
